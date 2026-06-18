@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Levain · Mooncake Talking Points 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#F26822; --green:#074908; --green2:#0A6B0C;
+    --cream:#FFF6EA; --cream2:#FDEBD5; --ink:#1a1a1a; --muted:#6b5d4f;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--cream); color:var(--ink);
+    font-family:'Poppins',sans-serif; font-weight:300; line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:900px; margin:0 auto; padding:0 22px 90px;}
+
+  header.hero{
+    background:
+      radial-gradient(120% 120% at 100% 0%, rgba(242,104,34,.16), transparent 55%),
+      linear-gradient(180deg, var(--green) 0%, var(--green2) 100%);
+    color:var(--cream); padding:64px 22px 56px; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  header.hero::after{content:"☾"; position:absolute; right:-10px; top:-26px;
+    font-size:230px; line-height:1; color:rgba(255,246,234,.07);}
+  .kicker{font-family:'Poppins'; font-weight:500; letter-spacing:.32em;
+    text-transform:uppercase; font-size:12px; color:var(--cream2); opacity:.9;}
+  header.hero h1{font-family:'Fraunces',serif; font-weight:500;
+    font-size:clamp(34px,6vw,56px); margin:14px 0 10px; line-height:1.05;}
+  header.hero p{max-width:620px; margin:0 auto; font-size:16px; color:#f3ead9;}
+
+  .approach{background:var(--orange); color:#fff; border-radius:18px;
+    padding:30px 32px; margin:-30px auto 50px; max-width:840px;
+    box-shadow:0 18px 40px -22px rgba(242,104,34,.7); position:relative; z-index:2;}
+  .approach h2{font-family:'Fraunces',serif; font-weight:500; margin:0 0 8px; font-size:24px;}
+  .approach p{margin:0; font-size:15.5px; color:#fff4ec;}
+  .approach .pillars{display:flex; flex-wrap:wrap; gap:10px; margin-top:16px;}
+  .approach .pillars span{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3);
+    padding:6px 14px; border-radius:999px; font-size:13px; font-weight:400;}
+
+  .type{margin:56px 0 0;}
+  .type-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
+    border-bottom:2px solid var(--orange); padding-bottom:12px;}
+  .type-num{font-family:'Fraunces',serif; font-size:40px; color:var(--orange); line-height:.8;}
+  .type-head h2{font-family:'Fraunces',serif; font-weight:500; font-size:27px; margin:0; color:var(--green);}
+  .type-head .tag{font-size:13px; color:var(--muted); font-weight:400;}
+  .type-banner{display:block; width:100%; max-width:480px; margin:22px auto 4px; border-radius:14px;
+    box-shadow:0 14px 34px -20px rgba(7,73,8,.55);}
+  .type-intro{background:#fff; border:1px solid var(--cream2); border-left:4px solid var(--green2);
+    border-radius:12px; padding:18px 22px; margin:20px 0 6px; font-size:15px; color:#33291e;}
+  .type-intro strong{color:var(--green2); font-weight:600;}
+
+  /* Flavour cards with photo */
+  .flavour{display:flex; gap:22px; align-items:flex-start; background:#fff; border:1px solid var(--cream2);
+    border-radius:14px; padding:20px 22px; margin:18px 0; box-shadow:0 10px 26px -22px rgba(7,73,8,.5);}
+  .flavour-photo{flex:0 0 168px;}
+  .flavour-photo img{width:100%; border-radius:10px; display:block; background:var(--cream2);}
+  .flavour-body{flex:1; min-width:0;}
+  .flavour h3{font-family:'Fraunces',serif; font-weight:600; font-size:20px; margin:0 0 4px; color:var(--ink);}
+  .flavour .pill{display:inline-block; background:var(--cream); color:var(--orange);
+    font-size:11px; font-weight:600; letter-spacing:.08em; text-transform:uppercase;
+    padding:3px 10px; border-radius:999px; margin-bottom:10px;}
+  .flavour .story{font-size:15px; color:#3a2f22; margin:0 0 12px;}
+  .flavour ul{margin:0; padding-left:20px;}
+  .flavour li{font-size:14px; margin:5px 0; color:#4a3e30;}
+  .flavour li strong{font-weight:600; color:var(--green2);}
+  .note-inline{font-size:12.5px; color:var(--muted); font-style:italic;}
+
+  .pending{background:#fff7ef; border:1px dashed var(--orange); border-radius:10px;
+    padding:12px 16px; font-size:13.5px; color:#8a4a1f; margin-top:6px;}
+
+  .paste{margin-top:60px; background:linear-gradient(180deg,#fff,var(--cream)); border:1px solid var(--cream2);
+    border-radius:16px; padding:28px 30px;}
+  .paste h2{font-family:'Fraunces',serif; font-weight:500; color:var(--green); font-size:25px; margin:0 0 6px;}
+  .paste .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
+  .paste .col{background:#fff; border:1px solid var(--cream2); border-radius:12px; padding:18px 20px;}
+  .paste .col h4{margin:0 0 8px; font-family:'Poppins'; font-weight:600; font-size:15px; color:var(--orange);}
+  .paste .col p{font-size:14px; margin:0; color:#3a2f22;}
+  .hero-ingredient{background:var(--green); color:var(--cream); border-radius:12px; padding:18px 20px; margin-top:18px;
+    display:flex; gap:20px; align-items:center;}
+  .hero-ingredient img{flex:0 0 150px; width:150px; height:150px; object-fit:cover; border-radius:10px; display:block;}
+  .hero-ingredient .hi-body{flex:1; min-width:0;}
+  .hero-ingredient h4{margin:0 0 6px; font-family:'Fraunces',serif; font-weight:500; font-size:18px; color:#fff;}
+  .hero-ingredient p{margin:0; font-size:14px; color:#eadfcd;}
+
+  footer{margin-top:54px; text-align:center; font-size:12.5px; color:var(--muted);}
+  .confirm{color:var(--orange); font-weight:500;}
+  @media (max-width:640px){
+    .paste .grid{grid-template-columns:1fr;}
+    .flavour{flex-direction:column;}
+    .flavour-photo{flex:none; width:60%; max-width:230px; margin:0 auto;}
+  }
+  @media print{ body{background:#fff;} .flavour,.type-intro,.paste{box-shadow:none;} header.hero::after{display:none;} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="kicker">La Levain · Mid-Autumn 2026</div>
+  <h1>The Story Behind Our Mooncakes</h1>
+  <p>A reference for the team. The thinking, the ingredients and the craft behind every flavour this year, so we can all tell the same story.</p>
+</header>
+
+<div class="wrap">
+
+  <section class="approach">
+    <h2>Our approach</h2>
+    <p>We cook everything ourselves and use natural ingredients sourced from around the world. Chef Wythe trained as a food scientist, so every flavour is balanced with real precision. We also use only natural colouring throughout.</p>
+    <div class="pillars">
+      <span>Cooked in-house</span>
+      <span>Natural ingredients, globally sourced</span>
+      <span>Balanced with food science</span>
+      <span>Natural colouring only</span>
+    </div>
+  </section>
+
+  <!-- TYPE 1 -->
+  <section class="type">
+    <div class="type-head">
+      <span class="type-num">1</span>
+      <h2>Traditional Cantonese Mooncake</h2>
+      <span class="tag">The classics, made properly</span>
+    </div>
+
+    <img class="type-banner" src="assets/group-traditional.jpg" alt="The Traditional Cantonese mooncake range">
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/trad-redbean-matcha.jpg" alt="Red Bean with Mandarin Peel and Matcha Lotus mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 1</span>
+        <h3>Red Bean with Mandarin Peel &amp; Matcha Lotus</h3>
+        <p class="story">Two pastes in one mooncake. Red bean is slow-cooked together with mandarin peel until it turns deeply fragrant, alongside matcha folded through lotus paste.</p>
+        <ul>
+          <li>Red bean paste is cooked together with the mandarin peel.</li>
+          <li><strong>The longer it cooks, the more fragrant it becomes.</strong></li>
+          <li>We use <strong>aged Xinhui chenpi (陈皮)</strong>, at least five years old.</li>
+          <li>The matcha side is culinary-grade matcha cooked with lotus paste.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/trad-lemon-macadamia.jpg" alt="White Lotus with Lemon Peel and Macadamia mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 2</span>
+        <h3>Pure White Lotus with Lemon Peel &amp; Macadamia</h3>
+        <p class="story">Inspired by Chef Wythe's favourite sweet, the Italian lemon candy. Because a mooncake is already sweet on its own, he added lemon peel to lift and balance it.</p>
+        <ul>
+          <li>Inspired by Chef Wythe's favourite candy, the Italian lemon candy.</li>
+          <li>Since the mooncake already carries sweetness, he chose to add lemon peel.</li>
+          <li>Macadamia was added to improve the texture.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/trad-melon-seeds.jpg" alt="White Lotus with Melon Seeds mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 3</span>
+        <h3>Pure White Lotus with Melon Seeds</h3>
+        <p class="story">A traditional flavour, left as it should be.</p>
+        <ul><li><strong>Flavours 3 and 4 are about keeping things traditional.</strong> Classic flavours, left untouched and respected, made with quality ingredients.</li></ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/trad-single-yolk.jpg" alt="White Lotus with Single Yolk mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 4</span>
+        <h3>Pure White Lotus with Single Yolk</h3>
+        <p class="story">The one everyone knows, kept honest. White lotus around a single golden yolk.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE 2 -->
+  <section class="type">
+    <div class="type-head">
+      <span class="type-num">2</span>
+      <h2>Momoyama Cantonese Mooncake</h2>
+      <span class="tag">Modern and fusion, the La Levain spirit</span>
+    </div>
+
+    <img class="type-banner" src="assets/group-momoyama.jpg" alt="The Momoyama Cantonese mooncake range">
+
+    <div class="type-intro">
+      When La Levain started making mooncakes, we wanted a range that showed off the brand's <strong>modern, fusion</strong> character, so we chose to work with Momoyama skin. Momoyama lets the skin take on <strong>colour from natural ingredients</strong>, instead of the baked brown skin you find on traditional mooncakes. It is also <strong>lower in sugar</strong>.
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/salted-yolk.jpg" alt="White Lotus with Salted Egg Yolk mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 1</span>
+        <h3>Pure White Lotus with Salted Egg Yolk</h3>
+        <p class="story">The classic, traditional flavour, presented in La Levain's Momoyama skin.</p>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/matcha-yuzu.jpg" alt="Uji Matcha White Lotus with Valrhona Yuzu mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 2</span>
+        <h3>Uji Matcha White Lotus with Valrhona Yuzu Chocolate</h3>
+        <p class="story">A pairing of complementary Japanese flavours that balance each other perfectly. The bright, zesty tartness of yuzu cuts through the rich, earthy, umami bitterness of green tea, for a refreshing and multi-dimensional flavour.</p>
+        <ul>
+          <li>Ceremonial-grade <strong>Uji matcha</strong> powder is used to make the mooncake skin.</li>
+          <li>The paste is culinary-grade matcha lotus paste.</li>
+          <li>Chef Wythe first experimented with regular yuzu, but the flavour didn't come through as strongly as he wanted, so he chose <strong>Valrhona yuzu chocolate</strong> instead.</li>
+          <li>Choosing Valrhona also reflects a real side of La Levain. We're used to working with French chocolate, and Valrhona yuzu is known for its high quality flavour. It lets the matcha come through while making the yuzu more pronounced.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/choc-pistachio.jpg" alt="Chocolate Lotus with Pistachio Crunch mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 3</span>
+        <h3>Chocolate Lotus with Pistachio Crunch</h3>
+        <p class="story">Inspired by the famous, viral pistachio kunafa creations, rebuilt so it keeps well in a mooncake.</p>
+        <ul>
+          <li>Chef Wythe was inspired by the viral, famous pistachio kunafa creations.</li>
+          <li>He tried making it with kunafa, but found the kunafa would turn rancid, so he broke it down and used <strong>Italian pistachio paste with pistachio nut</strong> instead.</li>
+          <li>It is paired with chocolate lotus paste made using <strong>Belgian chocolate</strong>.</li>
+          <li>Belgian chocolate is used because it cooks better with the lotus paste than regular chocolate.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/berry-rose.jpg" alt="Mixed Berry Lotus with Raspberry Rose mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 4</span>
+        <h3>Mixed Berry Lotus with Raspberry Rose</h3>
+        <p class="story">This year's concept carries floral elements, so Chef Wythe wanted to experiment with a floral flavour. The flower he chose was rose. Mooncakes are usually sweet, and Chef leans towards sour profiles and raspberry, so he paired the rose with freeze-dried raspberry.</p>
+        <ul>
+          <li>The floral note chosen was <strong>rose</strong>.</li>
+          <li>He paired the rose paste with <strong>freeze-dried raspberry</strong> for a sour lift.</li>
+          <li><strong>Rose petals</strong> are also added inside, in the paste.</li>
+          <li>The mixed-berry lotus paste is blended with mixed berries (strawberry, blueberry, mulberry, raspberry and others).</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE 3 -->
+  <section class="type">
+    <div class="type-head">
+      <span class="type-num">3</span>
+      <h2>Mini Momoyama Cantonese Mooncake</h2>
+      <span class="tag">Made for the new generation</span>
+    </div>
+
+    <img class="type-banner" src="assets/group-mini.jpg" alt="The Mini Momoyama mooncake range">
+
+    <div class="type-intro">
+      The mini range is made for the <strong>new generation</strong>. It lets them enjoy mooncakes without committing to a big appetite, which is ideal for first-timers and newcomers. Full-size mooncakes can be hard for this generation to finish, so smaller is better for eating, sharing and gifting. Mooncakes today carry a lot of modern influence, and at La Levain we always look at what people want, what they like and which flavours are popular, so we can create something suited to this generation. It is also a way for us to <strong>express our creativity</strong> and experiment with interesting flavour combinations.
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/mango-pomelo.jpg" alt="Mango Pomelo with Grapefruit mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 1</span>
+        <h3>Mango Pomelo with Grapefruit</h3>
+        <p class="story">Built around mango pomelo, one of Singapore's favourite desserts, with an abundance of mango and pomelo flavour.</p>
+        <ul>
+          <li>Mango pomelo is one of Singaporeans' favourite desserts.</li>
+          <li>The base is a mango pomelo lotus paste, made with <strong>Aiwen mango from Taiwan</strong>, the most popular mango in Taiwan, also known as Irwin or apple mango.</li>
+          <li>The pomelo is candied pomelo zest.</li>
+          <li>It also includes <strong>grapefruit paste with candied grapefruit</strong>, and dried mango chunks.</li>
+          <li>Chef didn't find it sour enough on its own, so he added the grapefruit for more edge.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/peach-oolong.jpg" alt="Peach Jasmine Oolong mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 2</span>
+        <h3>Peach Jasmine Oolong</h3>
+        <p class="story">The most complicated, and most special, flavour of the range. La Levain has experimented with many tea-flavoured mooncakes over the years and it has always been challenging, but this year the combination finally worked. The taste is balanced at last, not too sour from the peach and not bitter from the tea.</p>
+        <ul>
+          <li>Two types of lotus paste are used to show the distinct colours: <strong>oolong tea lotus paste</strong>, and an <strong>oolong-and-jasmine tea lotus paste</strong>.</li>
+          <li>Finished with <strong>candied white peach</strong>.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/coffee-lava.jpg" alt="Illy Coffee Lava mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 3</span>
+        <h3>Illy Coffee Lava</h3>
+        <p class="story">Chef Wythe has always wanted to make a lava-series mooncake, and this year he decided to try it with coffee. Illy was chosen because it showcases the La Levain spirit and our fusion values.</p>
+        <ul>
+          <li>Usually, lotus paste with coffee ends up tasting very similar to Singapore coffee candy.</li>
+          <li>To bring out a different taste, <strong>100% Arabica bean powder from Illy</strong> was used.</li>
+          <li>The coffee lava centre is also made with Illy coffee.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/fleur-de-cao.jpg" alt="Fleur de Cao with Mochi mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 4</span>
+        <h3>Fleur de Cao with Mochi</h3>
+        <p class="story">Inspired by cookies and cream, turned into a mooncake.</p>
+        <ul>
+          <li>Made with our signature <strong>Fleur de Cao cookie</strong>, paired with chocolate lotus paste made from <strong>Belgian chocolate</strong>.</li>
+          <li>Belgian chocolate is used because it cooks better with the lotus paste than regular chocolate.</li>
+          <li><strong>Mochi</strong> is used for added texture.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TYPE 4 — TEOCHEW -->
+  <section class="type">
+    <div class="type-head">
+      <span class="type-num">4</span>
+      <h2>Teochew Mooncake</h2>
+      <span class="tag">Flaky, buttery, hand-folded crust</span>
+    </div>
+
+    <img class="type-banner" src="assets/group-teochew.jpg" alt="The Teochew mooncake range">
+
+    <div class="type-intro">
+      <p style="margin:0 0 10px;">Our Teochew mooncakes are <strong>baked, not fried</strong> the way they are made traditionally, which keeps them less oily.</p>
+      <p style="margin:0 0 10px;">They are the most labour-intensive mooncakes we make. The crust takes many careful folds and a great deal of shaping, all done in a temperature-controlled environment so the butter never melts along the way. The butter has to stay firm, because that is what gives the layers their flaky, never brittle texture. It calls for precise measurements, speed and a lot of handwork, which is the reason not many brands make them.</p>
+      <p style="margin:0;">For the crust we use <strong>Pamplie butter (Laiterie de Pamplie)</strong>, a barrel-churned French butter from the Charentes-Poitou region, known as "le beurre des chefs", the chef's butter, prized for its rich, creamy texture and slight nuttiness.</p>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/teochew-saltedegg.jpg" alt="Teochew Salted Egg mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 1</span>
+        <h3>Teochew Salted Egg</h3>
+        <p class="story">The traditional flavour, in a Teochew skin.</p>
+        <ul>
+          <li>The salted egg is more fragrant than in previous editions, with its richness elevated.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/teochew-blacksesame.jpg" alt="Teochew Black Sesame Hokkaido Milk with Mochi mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 2</span>
+        <h3>Teochew Black Sesame Hokkaido Milk with Mochi</h3>
+        <p class="story">Inspired by the traditional Hong Kong black sesame paste (zee ma woo), blended with Japanese Hokkaido milk and finished with mochi.</p>
+        <ul>
+          <li>Inspired by the traditional black sesame paste, zee ma woo, from Hong Kong.</li>
+          <li>Blended with Japanese Hokkaido milk, which complements the black sesame perfectly for a more intense flavour.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="flavour">
+      <div class="flavour-photo"><img src="assets/teochew-bobochacha.jpg" alt="Teochew BoboChaCha mooncake"></div>
+      <div class="flavour-body">
+        <span class="pill">Flavour 3</span>
+        <h3>Teochew BoboChaCha</h3>
+        <p class="story">Our signature flavour, our take on the local bobochacha, infused with Singaporean flavours.</p>
+        <ul>
+          <li>Made with <strong>Taiwanese yam</strong>.</li>
+          <li>Filled with a <strong>sea salt coconut salted egg custard</strong>.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PASTE COMPARISON -->
+  <section class="paste">
+    <h2>A note on our lotus paste</h2>
+    <p style="font-size:15px;color:#3a2f22;margin:0;">We use a different lotus paste for each type of mooncake. The traditional range keeps its traditions, while the Momoyama range was free to experiment.</p>
+    <div class="grid">
+      <div class="col">
+        <h4>Traditional Cantonese</h4>
+        <p>A very traditional lotus paste. Dense, and fragrant from peanut oil.</p>
+      </div>
+      <div class="col">
+        <h4>Momoyama Cantonese</h4>
+        <p>A modernised paste, experimented with while the traditional range keeps its traditions. It is cooked together with lotus plumule, which gives it an earthy, floral note and lets us use less peanut oil.</p>
+      </div>
+    </div>
+    <div class="hero-ingredient">
+      <img src="assets/lian-zi-xin.jpg" alt="Lotus plumule, the green embryo inside the lotus seed">
+      <div class="hi-body">
+        <h4>Lotus plumule (Lian Zi Xin / 莲子心)</h4>
+        <p>The tiny green embryo found inside the lotus seed, known for its intensely bitter taste. It is traditionally used in Chinese medicine to calm the mind, clear excess heat from the body and promote restful sleep. It carries the natural, pure taste and fragrance of lotus and needs less peanut oil than traditional paste, giving an earthy, floral note. Paired with mooncakes, which are usually sweet, it sits beautifully and keeps them from being too sweet.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    La Levain · Mid-Autumn 2026 · Internal reference for the team<br>
+    Items marked <span class="confirm">to confirm</span> need to be verified with Chef before being shared with customers.
+  </footer>
+
+</div>
+</body>
+</html>
