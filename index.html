@@ -94,6 +94,18 @@
   .hero-ingredient h4{margin:0 0 6px; font-family:'Fraunces',serif; font-weight:500; font-size:18px; color:#fff;}
   .hero-ingredient p{margin:0; font-size:14px; color:#eadfcd;}
 
+  .storage{margin-top:60px; background:#fff; border:1px solid var(--cream2); border-radius:16px; padding:28px 30px;}
+  .storage h2{font-family:'Fraunces',serif; font-weight:500; color:var(--green); font-size:25px; margin:0 0 6px;}
+  .storage .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
+  .storage .col{background:var(--cream); border:1px solid var(--cream2); border-radius:12px; padding:18px 20px;}
+  .storage .col h4{margin:0 0 2px; font-family:'Poppins'; font-weight:600; font-size:15px; color:var(--orange);}
+  .storage .shelf{display:inline-block; background:#fff; color:var(--green2); font-weight:600; font-size:12px; padding:2px 10px; border-radius:999px; margin:6px 0 10px; border:1px solid var(--cream2);}
+  .storage .col p{font-size:14px; margin:0 0 10px; color:#3a2f22;}
+  .storage .col p:last-child{margin-bottom:0;}
+  .storage .or{display:block; text-align:center; font-family:'Fraunces',serif; font-size:14px; color:var(--orange); letter-spacing:.2em; margin:8px 0;}
+  .storage .heat{font-weight:600; color:var(--green2);}
+  @media (max-width:640px){ .storage .grid{grid-template-columns:1fr;} }
+
   footer{margin-top:54px; text-align:center; font-size:12.5px; color:var(--muted);}
   .confirm{color:var(--orange); font-weight:500;}
   @media (max-width:640px){
@@ -435,6 +447,26 @@
       <div class="hi-body">
         <h4>Lotus plumule (Lian Zi Xin / 莲子心)</h4>
         <p>The tiny green embryo found inside the lotus seed, known for its intensely bitter taste. It is traditionally used in Chinese medicine to calm the mind, clear excess heat from the body and promote restful sleep. It carries the natural, pure taste and fragrance of lotus and needs less peanut oil than traditional paste, giving an earthy, floral note. Paired with mooncakes, which are usually sweet, it sits beautifully and keeps them from being too sweet.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STORAGE -->
+  <section class="storage">
+    <h2>Storage &amp; shelf life</h2>
+    <p style="font-size:15px;color:#3a2f22;margin:0;">How to keep every mooncake at its best, and how to bring the Teochew crust back to full flakiness.</p>
+    <div class="grid">
+      <div class="col">
+        <h4>Flaky Teochew Mooncakes</h4>
+        <span class="shelf">Shelf life: 1 month</span>
+        <p>Keep in a cool and dry place, away from heat and direct sunlight, in ambient temperature. Heat up in a pre-heated oven at <span class="heat">160°C for 5 to 8 minutes</span> for optimal flakiness and texture.</p>
+        <span class="or">OR</span>
+        <p>Keep in the freezer at -12°C within 1 day of receiving, for up to 21 days. Heat up in a pre-heated oven at <span class="heat">160°C for 8 to 10 minutes</span> for optimal flakiness and texture.</p>
+      </div>
+      <div class="col">
+        <h4>Momoyama &amp; Traditional Mooncakes</h4>
+        <span class="shelf">Shelf life: 3 months</span>
+        <p>Keep in a cool and dry place, away from heat and direct sunlight, in ambient temperature.</p>
       </div>
     </div>
   </section>
