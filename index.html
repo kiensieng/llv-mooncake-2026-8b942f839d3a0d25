@@ -182,6 +182,12 @@
   .flavour .specs p{margin:0; line-height:1.55;}
   .note-inline{font-size:12.5px; color:var(--muted); font-style:italic;}
 
+
+  .pill.say{cursor:pointer; background:none; display:inline-flex; align-items:center; gap:7px;
+    font-family:var(--font-display); transition:background .15s, color .15s;}
+  .pill.say svg{width:13px; height:13px;}
+  .pill.say:hover, .pill.say.playing{background:var(--gold); color:#fff; border-color:var(--gold);}
+
   /* ---------- ORDER ---------- */
   .order-row{text-align:center; margin:28px 0 4px;}
   .order-row a{display:inline-block; background:var(--orange); color:#fff; text-decoration:none;
@@ -709,7 +715,7 @@
     <div class="flavour pkg">
       <div class="flavour-photo"><img loading="lazy" src="assets/pkg-malle-open.webp?v=2" alt="La Malle, the travel trunk, opened"><img loading="lazy" src="assets/pkg-malle-held.webp?v=2" alt="La Malle carried by its handle"></div>
       <div class="flavour-body">
-        <span class="pill">Say it: lah MAHL</span>
+        <button class="pill say" data-audio="assets/audio/la-malle.m4a" aria-label="Hear the pronunciation"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Say it: lah MAHL</button>
         <h3>La Malle · Travel Trunk</h3>
         <p class="story">Our signature trunk, for gifts that go places. Inspired by the great French travelling trunks, a handled case built for the journey. The most generous of the formats, and the one that never needs a gift bag.</p>
         <ul>
@@ -721,7 +727,7 @@
     <div class="flavour pkg">
       <div class="flavour-photo"><img loading="lazy" src="assets/pkg-ecrin.webp?v=2" alt="L'Écrin, the keepsake box"><img loading="lazy" src="assets/pkg-ecrin-2.webp?v=2" alt="Opening L'Écrin at the table"></div>
       <div class="flavour-body">
-        <span class="pill">Say it: lay-KRAN</span>
+        <button class="pill say" data-audio="assets/audio/l-ecrin.m4a" aria-label="Hear the pronunciation"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Say it: lay-KRAN</button>
         <h3>L'Écrin · Keepsake Box</h3>
         <p class="story">A jewel-box for the season's finest. "Écrin" is what the French call the case that holds jewellery, and that's how we treat what goes inside. A rigid presentation box with a lift-away lid.</p>
         <ul>
@@ -733,7 +739,7 @@
     <div class="flavour pkg">
       <div class="flavour-photo"><img loading="lazy" src="assets/pkg-coffret.webp?v=2" alt="Le Coffret, the collector's tin"><img loading="lazy" src="assets/pkg-coffret-2.webp?v=2" alt="Traditional mooncakes in Le Coffret"></div>
       <div class="flavour-body">
-        <span class="pill">Say it: luh koh-FRAY</span>
+        <button class="pill say" data-audio="assets/audio/le-coffret.m4a" aria-label="Hear the pronunciation"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Say it: luh koh-FRAY</button>
         <h3>Le Coffret · Collector's Tin</h3>
         <p class="story">One for the collection. A decorative metal tin in this season's house print, made to outlast the mooncakes inside. After the festival it finds a second life, for tea, for trinkets, for next year's anticipation.</p>
         <ul>
@@ -745,7 +751,7 @@
     <div class="flavour pkg">
       <div class="flavour-photo"><img loading="lazy" src="assets/pkg-etui-marine.webp?v=2" alt="L'Étui Marine, the blue half box"><img loading="lazy" src="assets/pkg-etui-marine-2.webp?v=2" alt="L'Étui Marine boxes stacked"></div>
       <div class="flavour-body">
-        <span class="pill">Half Box · Say it: lay-TWEE mah-REEN</span>
+        <button class="pill say" data-audio="assets/audio/l-etui-marine.m4a" aria-label="Hear the pronunciation"><svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4zM15.5 8.5a5 5 0 0 1 0 7M18.5 5.5a9 9 0 0 1 0 13"/></svg>Half Box · Say it: lay-TWEE mah-REEN</button>
         <h3>L'Étui Marine · Keepsake Box</h3>
         <p class="story">The French keep a slim case for a single treasure, a pen, a pair of spectacles, a watch. They call it an étui. Ours holds our flaky Teochew mooncakes in a slender box that slips into a tote as easily as it sits on a desk.</p>
         <ul>
@@ -851,6 +857,21 @@
     });
   }, {rootMargin:'0px 0px -8% 0px', threshold:0.05});
   targets.forEach(function(t){ t.classList.add('reveal'); io.observe(t); });
+})();
+</script>
+
+<script>
+(function(){
+  var player = new Audio();
+  document.querySelectorAll('.pill.say').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      player.src = btn.dataset.audio;
+      document.querySelectorAll('.pill.say.playing').forEach(function(b){ b.classList.remove('playing'); });
+      btn.classList.add('playing');
+      player.onended = function(){ btn.classList.remove('playing'); };
+      player.play().catch(function(){ btn.classList.remove('playing'); });
+    });
+  });
 })();
 </script>
 </body>
