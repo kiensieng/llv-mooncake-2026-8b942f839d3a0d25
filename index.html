@@ -452,9 +452,7 @@
   <video id="introLoop" class="iv" muted loop playsinline autoplay preload="auto" poster="assets/intro/earth-poster.jpg?v=1">
     <source src="assets/intro/earth-loop.mp4?v=1" type="video/mp4">
   </video>
-  <video id="introZoom" class="iv hidden" muted playsinline preload="auto">
-    <source src="assets/intro/earth-zoom.mp4?v=1" type="video/mp4">
-  </video>
+  <video id="introZoom" class="iv hidden" muted playsinline preload="auto"></video>
   <div class="intro-ui">
     <img src="assets/llv-logo-white.png" alt="La Levain">
     <div class="i-kicker">Mid-Autumn 2026</div>
@@ -478,19 +476,25 @@
     document.body.classList.remove('intro-active');
     setTimeout(function(){ intro.remove(); }, 1350);
   }
+  var small = window.matchMedia('(max-width: 760px)').matches;
+  zoomV.src = small ? 'assets/intro/earth-zoom-m.mp4?v=1' : 'assets/intro/earth-zoom.mp4?v=1';
+  zoomV.load();
   intro.addEventListener('click', function(){
     if (done || intro.classList.contains('zooming')) return;
     intro.classList.add('zooming');
-    if (zoomV.readyState >= 3) {
+    var started = false;
+    zoomV.addEventListener('playing', function(){
+      started = true;
       zoomV.classList.remove('hidden');
       loopV.pause();
-      zoomV.play().catch(dismiss);
-      zoomV.addEventListener('timeupdate', function(){
-        if (zoomV.currentTime > 3.35) dismiss();
-      });
-      zoomV.addEventListener('ended', dismiss);
-      setTimeout(dismiss, 9000);
-    } else { dismiss(); }
+    });
+    zoomV.addEventListener('timeupdate', function(){
+      if (zoomV.currentTime > 3.35) dismiss();
+    });
+    zoomV.addEventListener('ended', dismiss);
+    zoomV.play().catch(dismiss);
+    setTimeout(function(){ if (!started) dismiss(); }, 4500);
+    setTimeout(dismiss, 12000);
   });
   setTimeout(function(){ if (!done && loopV.readyState < 2) dismiss(); }, 6000);
 })();
