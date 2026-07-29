@@ -1069,11 +1069,87 @@
       '<p class="r-range">' + top.range + '</p>' +
       '<p class="r-blurb">' + top.blurb + '</p>' +
       '<div class="r-links"><a class="primary" href="' + top.buy + '" target="_blank" rel="noopener">Order this set</a>' +
-      '<a class="ghost" href="' + top.a + '">Read its story</a></div></div></div>' +
+      '<a class="ghost" href="' + top.a + '">Read its story</a>' +
+      '<a class="ghost" href="#quiz" id="shareMatch">Share my match</a></div></div></div>' +
       '<div class="runners"><div class="r-label">Worth a look too</div><div class="row">' +
       [r1, r2].map(function(r){ return '<a href="' + r.a + '"><img src="' + r.img + '" alt=""><span>' + r.name + '</span></a>'; }).join('') +
       '</div></div><button class="again">Start again</button>';
     box.querySelector('.again').addEventListener('click', start);
+    box.querySelector('#shareMatch').addEventListener('click', function(e){
+      e.preventDefault();
+      shareCard(ranked[0], this);
+    });
+  }
+  function loadImg(src){
+    return new Promise(function(res, rej){
+      var i = new Image(); i.onload = function(){ res(i); }; i.onerror = rej; i.src = src;
+    });
+  }
+  function wrapText(ctx, text, maxW){
+    var words = text.split(' '), lines = [], line = '';
+    words.forEach(function(w){
+      var t = line ? line + ' ' + w : w;
+      if (ctx.measureText(t).width > maxW && line) { lines.push(line); line = w; }
+      else { line = t; }
+    });
+    lines.push(line);
+    return lines;
+  }
+  function buildCard(key){
+    var f = F[key];
+    return document.fonts.ready.then(function(){
+      return Promise.all([loadImg('assets/llv-logo-white.png'), loadImg(f.img)]);
+    }).then(function(imgs){
+      var c = document.createElement('canvas'); c.width = 1080; c.height = 1350;
+      var x = c.getContext('2d');
+      x.fillStyle = '#382416'; x.fillRect(0, 0, 1080, 1350);
+      x.strokeStyle = '#B08A4A'; x.lineWidth = 2;
+      x.strokeRect(36, 36, 1008, 1278); x.strokeRect(48, 48, 984, 1254);
+      var logo = imgs[0], lw = 250, lh = lw * logo.height / logo.width;
+      x.drawImage(logo, (1080 - lw) / 2, 100, lw, lh);
+      x.textAlign = 'center';
+      try { x.letterSpacing = '10px'; } catch(e){}
+      x.fillStyle = '#B08A4A';
+      x.font = '600 26px "Josefin Sans", sans-serif';
+      x.fillText('MID-AUTUMN 2026', 540, 268);
+      x.fillStyle = '#FFFFFF';
+      x.font = '700 52px "Josefin Sans", sans-serif';
+      x.fillText('MY MOONCAKE MATCH', 540, 336);
+      try { x.letterSpacing = '0px'; } catch(e){}
+      x.fillStyle = '#FFFFFF'; x.fillRect(248, 386, 584, 584);
+      x.drawImage(imgs[1], 260, 398, 560, 560);
+      x.font = '700 46px "Josefin Sans", sans-serif';
+      x.fillStyle = '#FFFFFF';
+      var lines = wrapText(x, f.name.toUpperCase(), 880);
+      var y = 1058;
+      lines.forEach(function(l){ x.fillText(l, 540, y); y += 58; });
+      x.font = '30px "Bree Serif", serif';
+      x.fillStyle = '#D9C29A';
+      x.fillText(f.range, 540, y + 8);
+      x.font = '300 27px Poppins, sans-serif';
+      x.fillStyle = '#FAF3E7';
+      x.fillText('Find your flavour at midautumn2026.lalevain.com', 540, 1258);
+      return new Promise(function(res){ c.toBlob(res, 'image/png'); });
+    });
+  }
+  function shareCard(key, btn){
+    var label = btn.textContent;
+    btn.textContent = 'Preparing\u2026';
+    buildCard(key).then(function(blob){
+      btn.textContent = label;
+      var f = F[key];
+      var file = new File([blob], 'my-mooncake-match.png', {type: 'image/png'});
+      var text = 'I matched with ' + f.name + '! Find your Mid-Autumn flavour: https://midautumn2026.lalevain.com/';
+      if (navigator.canShare && navigator.canShare({files: [file]})) {
+        navigator.share({files: [file], text: text, title: 'My Mooncake Match'}).catch(function(){});
+      } else {
+        var a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'my-mooncake-match.png';
+        a.click();
+        setTimeout(function(){ URL.revokeObjectURL(a.href); }, 5000);
+      }
+    }).catch(function(){ btn.textContent = label; });
   }
   start();
 })();
