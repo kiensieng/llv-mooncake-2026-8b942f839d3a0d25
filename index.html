@@ -290,7 +290,7 @@
   /* ---------- SPACE INTRO ---------- */
   .intro{position:fixed; inset:0; z-index:200; background:#000; overflow:hidden;
     display:flex; align-items:center; justify-content:center; cursor:pointer;
-    transition:opacity .9s ease;}
+    transition:opacity 1.25s ease;}
   .intro.fade{opacity:0; pointer-events:none;}
   .intro video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
   .intro video.hidden{opacity:0;}
@@ -476,7 +476,7 @@
     sessionStorage.setItem('llvIntroSeen', '1');
     intro.classList.add('fade');
     document.body.classList.remove('intro-active');
-    setTimeout(function(){ intro.remove(); }, 1000);
+    setTimeout(function(){ intro.remove(); }, 1350);
   }
   intro.addEventListener('click', function(){
     if (done || intro.classList.contains('zooming')) return;
@@ -486,7 +486,7 @@
       loopV.pause();
       zoomV.play().catch(dismiss);
       zoomV.addEventListener('timeupdate', function(){
-        if (zoomV.duration && zoomV.currentTime > zoomV.duration - 0.55) dismiss();
+        if (zoomV.currentTime > 3.35) dismiss();
       });
       zoomV.addEventListener('ended', dismiss);
       setTimeout(dismiss, 9000);
