@@ -31,7 +31,9 @@
   header.hero::after{content:"☾"; position:absolute; right:-10px; top:-26px;
     font-size:230px; line-height:1; color:rgba(255,246,234,.07);}
   .kicker{font-family:'Poppins'; font-weight:500; letter-spacing:.32em;
-    text-transform:uppercase; font-size:12px; color:var(--cream2); opacity:.9;}
+    text-transform:uppercase; font-size:12px; color:var(--cream2); opacity:.9;
+    display:flex; align-items:center; justify-content:center; gap:14px;}
+  .kicker img{height:44px; width:auto; display:block;}
   header.hero h1{font-family:'Fraunces',serif; font-weight:500;
     font-size:clamp(34px,6vw,56px); margin:14px 0 10px; line-height:1.05;}
   header.hero p{max-width:620px; margin:0 auto; font-size:16px; color:#f3ead9;}
@@ -143,7 +145,7 @@
 <body>
 
 <header class="hero">
-  <div class="kicker">La Levain · Mid-Autumn 2026</div>
+  <div class="kicker"><img src="assets/llv-logo-white.png" alt="La Levain"><span>· Mid-Autumn 2026</span></div>
   <h1>The Story Behind Our Mooncakes</h1>
   <p class="tagline">Global inspirations. Unforgettable flavours. Made in Singapore.</p>
   <p>The thinking, the ingredients and the craft behind every flavour this Mid-Autumn.</p>
