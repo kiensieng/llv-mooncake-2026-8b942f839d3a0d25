@@ -39,7 +39,7 @@
   header.hero p{max-width:620px; margin:0 auto; font-size:16px; color:#f3ead9;}
 
   .approach{background:var(--orange); color:#fff; border-radius:18px;
-    padding:30px 32px; margin:-30px auto 50px; max-width:840px;
+    padding:30px 32px; margin:34px auto 26px; max-width:840px;
     box-shadow:0 18px 40px -22px rgba(242,104,34,.7); position:relative; z-index:2;}
   .approach h2{font-family:'Fraunces',serif; font-weight:500; margin:0 0 8px; font-size:24px;}
   .approach p{margin:0; font-size:15.5px; color:#fff4ec;}
@@ -61,6 +61,39 @@
   @media (max-width:640px){ .brandstory .grid{grid-template-columns:1fr;} }
 
   .pill.new{background:var(--orange); color:#fff; margin-left:6px;}
+
+  .jumpnav{position:sticky; top:0; z-index:50; background:var(--green);
+    box-shadow:0 8px 20px -14px rgba(0,0,0,.55);}
+  .jumpnav .in{max-width:900px; margin:0 auto; display:flex; gap:8px; overflow-x:auto;
+    padding:10px 22px; -webkit-overflow-scrolling:touch; scrollbar-width:none;}
+  .jumpnav .in::-webkit-scrollbar{display:none;}
+  .jumpnav a{flex:0 0 auto; color:var(--cream); text-decoration:none; font-size:13px; font-weight:400;
+    padding:6px 15px; border:1px solid rgba(255,246,234,.35); border-radius:999px; white-space:nowrap;
+    transition:background .15s;}
+  .jumpnav a:hover{background:rgba(255,246,234,.15);}
+  section[id], .flavour[id]{scroll-margin-top:70px;}
+
+  .index{margin:26px 0 0; background:#fff; border:1px solid var(--cream2); border-radius:16px; padding:28px 30px;}
+  .index h2{font-family:'Fraunces',serif; font-weight:500; color:var(--green); font-size:25px; margin:0 0 4px;}
+  .index .hint{font-size:14px; color:var(--muted); margin:0 0 18px;}
+  .index .grid{display:grid; grid-template-columns:repeat(5,1fr); gap:12px;}
+  .index a{display:block; text-decoration:none; color:var(--ink); background:var(--cream);
+    border:1px solid var(--cream2); border-radius:12px; padding:8px 8px 10px; text-align:center;
+    transition:transform .15s, box-shadow .15s;}
+  .index a:hover{transform:translateY(-2px); box-shadow:0 10px 22px -16px rgba(7,73,8,.6);}
+  .index img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:8px; display:block; background:var(--cream2);}
+  .index .nm{display:block; margin-top:7px; font-size:12px; font-weight:500; line-height:1.35;}
+  .index .cat{display:block; color:var(--orange); font-size:10px; font-weight:600;
+    text-transform:uppercase; letter-spacing:.08em; margin-top:3px;}
+  @media (max-width:760px){ .index .grid{grid-template-columns:repeat(3,1fr);} }
+  @media (max-width:480px){ .index .grid{grid-template-columns:repeat(2,1fr);} }
+
+  .order-row{text-align:center; margin:26px 0 4px;}
+  .order-row a{display:inline-block; background:var(--orange); color:#fff; text-decoration:none;
+    font-weight:500; font-size:15px; padding:13px 30px; border-radius:999px;
+    box-shadow:0 14px 28px -14px rgba(242,104,34,.8); transition:background .15s;}
+  .order-row a:hover{background:#d95a1a;}
+  .order-row .sub{display:block; margin-top:9px; font-size:12.5px; color:var(--muted);}
 
   .type{margin:56px 0 0;}
   .type-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
@@ -151,6 +184,19 @@
   <p>The thinking, the ingredients and the craft behind every flavour this Mid-Autumn.</p>
 </header>
 
+<nav class="jumpnav">
+  <div class="in">
+    <a href="#story">Our Story</a>
+    <a href="#flavours">All Flavours</a>
+    <a href="#traditional">Traditional</a>
+    <a href="#momoyama">Momoyama</a>
+    <a href="#mini">Mini Momoyama</a>
+    <a href="#teochew">Teochew</a>
+    <a href="#packaging">Packaging</a>
+    <a href="#storage">Storage</a>
+  </div>
+</nav>
+
 <div class="wrap">
 
   <section class="approach">
@@ -165,7 +211,7 @@
   </section>
 
   <!-- BRAND STORY -->
-  <section class="brandstory">
+  <section class="brandstory" id="story">
     <h2>The brand story</h2>
     <p class="lead">La Levain invites you to experience mooncakes like never before. Every artisan mooncake is made in our own kitchen in Singapore with premium ingredients, and carries Chef Wythe's bold creativity and deliberate, meticulous craftsmanship. When regular yuzu proved too weak against Uji matcha, it became Valrhona yuzu chocolate. That's the standard we hold every flavour to.</p>
     <div class="grid">
@@ -199,8 +245,31 @@
     <p class="closer">We're redefining what Mid-Autumn can taste like.</p>
   </section>
 
+  <!-- FLAVOUR INDEX -->
+  <section class="index" id="flavours">
+    <h2>Every flavour, at a glance</h2>
+    <p class="hint">Tap any flavour to read its full story.</p>
+    <div class="grid">
+      <a href="#f-redbean"><img src="assets/trad-redbean-matcha.jpg" alt="Red Bean with Mandarin Peel and Matcha Lotus"><span class="nm">Red Bean, Mandarin Peel &amp; Matcha Lotus</span><span class="cat">Traditional</span></a>
+      <a href="#f-lemon"><img src="assets/trad-lemon-macadamia.jpg" alt="White Lotus with Lemon Peel and Macadamia"><span class="nm">White Lotus, Lemon Peel &amp; Macadamia</span><span class="cat">Traditional</span></a>
+      <a href="#f-melon"><img src="assets/trad-melon-seeds.jpg" alt="White Lotus with Melon Seeds"><span class="nm">White Lotus with Melon Seeds</span><span class="cat">Traditional</span></a>
+      <a href="#f-yolk"><img src="assets/trad-single-yolk.jpg" alt="White Lotus with Single Yolk"><span class="nm">White Lotus with Single Yolk</span><span class="cat">Traditional</span></a>
+      <a href="#f-saltedyolk"><img src="assets/salted-yolk.jpg" alt="White Lotus with Salted Egg Yolk"><span class="nm">White Lotus with Salted Egg Yolk</span><span class="cat">Momoyama</span></a>
+      <a href="#f-matchayuzu"><img src="assets/matcha-yuzu.jpg" alt="Uji Matcha White Lotus with Valrhona Yuzu Chocolate"><span class="nm">Uji Matcha &amp; Valrhona Yuzu Chocolate</span><span class="cat">Momoyama</span></a>
+      <a href="#f-pistachio"><img src="assets/choc-pistachio.jpg" alt="Chocolate Lotus with Pistachio Crunch"><span class="nm">Chocolate Lotus, Pistachio Crunch</span><span class="cat">Momoyama · New</span></a>
+      <a href="#f-berryrose"><img src="assets/berry-rose.jpg" alt="Mixed Berry Lotus with Raspberry Rose"><span class="nm">Mixed Berry Lotus, Raspberry Rose</span><span class="cat">Momoyama · New</span></a>
+      <a href="#f-mango"><img src="assets/mango-pomelo.jpg" alt="Mango Pomelo with Grapefruit"><span class="nm">Mango Pomelo with Grapefruit</span><span class="cat">Mini Momoyama</span></a>
+      <a href="#f-peach"><img src="assets/peach-oolong.jpg" alt="Peach Jasmine Oolong"><span class="nm">Peach Jasmine Oolong</span><span class="cat">Mini Momoyama</span></a>
+      <a href="#f-coffee"><img src="assets/coffee-lava.jpg" alt="Illy Coffee Lava"><span class="nm">Illy Coffee Lava</span><span class="cat">Mini Momoyama</span></a>
+      <a href="#f-fleur"><img src="assets/fleur-de-cao.jpg" alt="Fleur de Cao"><span class="nm">Fleur de Cao</span><span class="cat">Mini Momoyama</span></a>
+      <a href="#f-teosalted"><img src="assets/teochew-saltedegg.jpg" alt="Teochew Salted Egg"><span class="nm">Teochew Salted Egg</span><span class="cat">Teochew</span></a>
+      <a href="#f-teosesame"><img src="assets/teochew-blacksesame.jpg" alt="Teochew Black Sesame Hokkaido Milk with Mochi"><span class="nm">Black Sesame Hokkaido Milk, Mochi</span><span class="cat">Teochew</span></a>
+      <a href="#f-teobobo"><img src="assets/teochew-bobochacha.jpg" alt="Teochew BoboChaCha"><span class="nm">Teochew BoboChaCha</span><span class="cat">Teochew</span></a>
+    </div>
+  </section>
+
   <!-- TYPE 1 -->
-  <section class="type">
+  <section class="type" id="traditional">
     <div class="type-head">
       <span class="type-num">1</span>
       <h2>Traditional Cantonese Mooncake</h2>
@@ -213,7 +282,7 @@
       Our traditional Cantonese mooncakes keep to the classics. A <strong>dense, fragrant lotus paste</strong> made the old way with peanut oil, and flavours we've chosen to respect rather than reinvent. Where we make the difference is in the quality of what goes in, like <strong>aged Xinhui chenpi</strong> and culinary-grade matcha. A few of these we leave entirely untouched, exactly as they should be.
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-redbean">
       <div class="flavour-photo"><img src="assets/trad-redbean-matcha.jpg" alt="Red Bean with Mandarin Peel and Matcha Lotus mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 1</span>
@@ -230,7 +299,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-lemon">
       <div class="flavour-photo"><img src="assets/trad-lemon-macadamia.jpg" alt="White Lotus with Lemon Peel and Macadamia mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 2</span>
@@ -246,7 +315,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-melon">
       <div class="flavour-photo"><img src="assets/trad-melon-seeds.jpg" alt="White Lotus with Melon Seeds mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 3</span>
@@ -258,7 +327,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-yolk">
       <div class="flavour-photo"><img src="assets/trad-single-yolk.jpg" alt="White Lotus with Single Yolk mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 4</span>
@@ -268,10 +337,12 @@
           <p><strong>Ingredients:</strong> Lotus Paste (Lotus Seed, Sugar, Vegetable Oil, Water), Dough (Wheat Flour, Sugar Syrup [Sugar, Water], Peanut Oil, Alkaline Water [Water, Potassium Carbonate]), Salted Egg Yolk (Duck Egg Yolk, Salt), Melon Seeds.</p></div>
       </div>
     </div>
+
+    <div class="order-row"><a href="https://www.lalevain.com/product/traditional-cantonese-mooncake/" target="_blank" rel="noopener">Order the Traditional Cantonese set</a><span class="sub">Opens our online store</span></div>
   </section>
 
   <!-- TYPE 2 -->
-  <section class="type">
+  <section class="type" id="momoyama">
     <div class="type-head">
       <span class="type-num">2</span>
       <h2>Momoyama Cantonese Mooncake</h2>
@@ -284,7 +355,7 @@
       When La Levain started making mooncakes, we wanted a range that showed off the brand's <strong>modern, fusion</strong> character, so we chose to work with Momoyama skin. Momoyama lets the skin take on <strong>colour from natural ingredients</strong>, instead of the baked brown skin you find on traditional mooncakes. It is also <strong>lower in sugar</strong>. For 2026 the range welcomes <strong>two new flavours</strong>: Chocolate Lotus with Pistachio Crunch, and Mixed Berry Lotus with Raspberry Rose.
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-saltedyolk">
       <div class="flavour-photo"><img src="assets/salted-yolk.jpg" alt="White Lotus with Salted Egg Yolk mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 1</span>
@@ -295,7 +366,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-matchayuzu">
       <div class="flavour-photo"><img src="assets/matcha-yuzu.jpg" alt="Uji Matcha White Lotus with Valrhona Yuzu mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 2</span>
@@ -312,7 +383,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-pistachio">
       <div class="flavour-photo"><img src="assets/choc-pistachio.jpg" alt="Chocolate Lotus with Pistachio Crunch mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 3</span><span class="pill new">New for 2026</span>
@@ -329,7 +400,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-berryrose">
       <div class="flavour-photo"><img src="assets/berry-rose.jpg" alt="Mixed Berry Lotus with Raspberry Rose mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 4</span><span class="pill new">New for 2026</span>
@@ -345,10 +416,12 @@
           <p><strong>Ingredients:</strong> Lotus Paste, Maruchi Dough, Raspberry Rose Paste, Dried Raspberry, Mixed Berry Paste, Strawberry Paste, Black Tea, Colouring.</p></div>
       </div>
     </div>
+
+    <div class="order-row"><a href="https://www.lalevain.com/product/cantonese-mooncake-4pc/" target="_blank" rel="noopener">Order the Momoyama Cantonese set</a><span class="sub">Opens our online store</span></div>
   </section>
 
   <!-- TYPE 3 -->
-  <section class="type">
+  <section class="type" id="mini">
     <div class="type-head">
       <span class="type-num">3</span>
       <h2>Mini Momoyama Cantonese Mooncake</h2>
@@ -361,7 +434,7 @@
       The mini range is made for the <strong>new generation</strong>. It lets them enjoy mooncakes without committing to a big appetite, which is ideal for first-timers and newcomers. Full-size mooncakes can be hard for this generation to finish, so smaller is better for eating, sharing and gifting. Mooncakes today carry a lot of modern influence, and at La Levain we always look at what people want, what they like and which flavours are popular, so we can create something suited to this generation. It is also a way for us to <strong>express our creativity</strong> and experiment with interesting flavour combinations.
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-mango">
       <div class="flavour-photo"><img src="assets/mango-pomelo.jpg" alt="Mango Pomelo with Grapefruit mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 1</span>
@@ -380,7 +453,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-peach">
       <div class="flavour-photo"><img src="assets/peach-oolong.jpg" alt="Peach Jasmine Oolong mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 2</span>
@@ -396,7 +469,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-coffee">
       <div class="flavour-photo"><img src="assets/coffee-lava.jpg" alt="Illy Coffee Lava mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 3</span>
@@ -412,7 +485,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-fleur">
       <div class="flavour-photo"><img src="assets/fleur-de-cao.jpg" alt="Fleur de Cao mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 4</span>
@@ -426,10 +499,12 @@
           <p><strong>Ingredients:</strong> Maruchi Dough, Chocolate Lotus Paste, Fleur de Cao Cookies, Emolco Chocolate, Peanut Oil, Cocoa Powder, Brown Colouring.</p></div>
       </div>
     </div>
+
+    <div class="order-row"><a href="https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/" target="_blank" rel="noopener">Order the Mini Momoyama set</a><span class="sub">Opens our online store</span></div>
   </section>
 
   <!-- TYPE 4 — TEOCHEW -->
-  <section class="type">
+  <section class="type" id="teochew">
     <div class="type-head">
       <span class="type-num">4</span>
       <h2>Teochew Mooncake</h2>
@@ -444,7 +519,7 @@
       <p style="margin:0;">For the crust we use <strong>Elle &amp; Vire butter</strong>, a French butter churned slowly in Normandy by master butter-makers, the benchmark that chefs the world over reach for, prized for its rich, creamy texture.</p>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-teosalted">
       <div class="flavour-photo"><img src="assets/teochew-saltedegg.jpg" alt="Teochew Salted Egg mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 1</span>
@@ -458,7 +533,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-teosesame">
       <div class="flavour-photo"><img src="assets/teochew-blacksesame.jpg" alt="Teochew Black Sesame Hokkaido Milk with Mochi mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 2</span>
@@ -473,7 +548,7 @@
       </div>
     </div>
 
-    <div class="flavour">
+    <div class="flavour" id="f-teobobo">
       <div class="flavour-photo"><img src="assets/teochew-bobochacha.jpg" alt="Teochew BoboChaCha mooncake"></div>
       <div class="flavour-body">
         <span class="pill">Flavour 3</span>
@@ -488,10 +563,12 @@
           <p><strong>Ingredients:</strong> Coconut Sea Salt Filling (Coconut, Sugar, Water, Coconut Oil, Flavouring), Yam Filling (Taro, Sugar, Vegetable Oil, Water), Coconut Mochi (Glutinous Rice Flour, Sugar, Water, Coconut Oil, Flavouring), Dough (Wheat Flour [T55], Icing Sugar, Salted Butter, Water), Butter Dough (Salted Butter, Wheat Flour, Sugar, Purple Sweet Potato Powder).</p></div>
       </div>
     </div>
+
+    <div class="order-row"><a href="https://www.lalevain.com/product/baked-teochew-mooncake/" target="_blank" rel="noopener">Order the Teochew set</a><span class="sub">Opens our online store</span></div>
   </section>
 
   <!-- TYPE 5 — PACKAGING -->
-  <section class="type">
+  <section class="type" id="packaging">
     <div class="type-head">
       <span class="type-num">5</span>
       <h2>The Packaging</h2>
@@ -555,10 +632,12 @@
       </div>
     </div>
 
+    <div class="order-row"><a href="https://www.lalevain.com/product/assorted-traditional-momoyama-cantonese-mooncake-4pcs/" target="_blank" rel="noopener">Order the Assorted set</a><span class="sub">Traditional and Momoyama in one box · Opens our online store</span></div>
+
   </section>
 
   <!-- PASTE COMPARISON -->
-  <section class="paste">
+  <section class="paste" id="paste">
     <h2>A note on our lotus paste</h2>
     <p style="font-size:15px;color:#3a2f22;margin:0;">We use a different lotus paste for each type of mooncake. The traditional range keeps its traditions, while the Momoyama range was free to experiment.</p>
     <div class="grid">
@@ -581,7 +660,7 @@
   </section>
 
   <!-- STORAGE -->
-  <section class="storage">
+  <section class="storage" id="storage">
     <h2>Storage &amp; shelf life</h2>
     <p style="font-size:15px;color:#3a2f22;margin:0;">How to keep every mooncake at its best, and how to bring the Teochew crust back to full flakiness.</p>
     <div class="grid">
