@@ -1226,7 +1226,8 @@
       var f = F[key];
       var file = new File([blob], 'my-mooncake-match.png', {type: 'image/png'});
       var text = 'I matched with ' + f.name + '! Find your Mid-Autumn flavour: https://midautumn2026.lalevain.com/';
-      if (navigator.canShare && navigator.canShare({files: [file]})) {
+      var isTouch = window.matchMedia('(pointer: coarse)').matches;
+      if (isTouch && navigator.canShare && navigator.canShare({files: [file]})) {
         navigator.share({files: [file], text: text, title: 'My Mooncake Match'}).catch(function(){});
       } else {
         var a = document.createElement('a');
