@@ -275,7 +275,7 @@
   .jumpnav{position:sticky;}
 
   /* ---------- LIGHTBOX ---------- */
-  .flavour-photo img, .type-banner, .banner-row img, .chef-photo img{cursor:zoom-in;}
+  .flavour-photo img, .type-banner, .banner-row img, .chef-photo img, .story-photo{cursor:zoom-in;}
   .lightbox{position:fixed; inset:0; background:rgba(30,18,10,.92); z-index:100;
     display:none; align-items:center; justify-content:center; padding:30px; cursor:zoom-out;}
   .lightbox.open{display:flex;}
@@ -283,6 +283,35 @@
     border:1px solid var(--gold); background:#fff; padding:6px;}
   .lightbox .lb-close{position:absolute; top:18px; right:22px; background:none; border:none;
     color:var(--gold-soft); font-size:30px; line-height:1; cursor:pointer; font-family:var(--font-body);}
+
+
+  /* ---------- HERO ENTRANCE ---------- */
+  header.hero .kicker{opacity:0; animation:herofade .8s ease .1s forwards;}
+  header.hero h1 .w{display:inline-block; opacity:0; transform:translateY(22px);
+    animation:heroword .65s cubic-bezier(.2,.7,.3,1) forwards;
+    animation-delay:calc(.5s + var(--i) * .13s);}
+  header.hero .tagline{opacity:0; animation:herofade .8s ease 1.35s forwards;}
+  header.hero p:not(.tagline){opacity:0; animation:herofade .8s ease 1.55s forwards;}
+  @keyframes heroword{to{opacity:1; transform:none;}}
+  @keyframes herofade{to{opacity:1;}}
+  @media (prefers-reduced-motion: reduce){
+    header.hero .kicker, header.hero h1 .w, header.hero .tagline, header.hero p:not(.tagline){
+      animation:none; opacity:1; transform:none;}
+  }
+
+  /* ---------- BRAND STORY PHOTO ---------- */
+  .story-photo{width:100%; display:block; margin:20px 0 0; cursor:zoom-in;}
+
+  /* ---------- QUIZ CTA ---------- */
+  .quiz-cta{margin-top:30px; text-align:center; background:#fff; border:1px dashed var(--gold);
+    padding:30px 24px;}
+  .quiz-cta h3{font-family:var(--font-accent); font-weight:400; font-size:20px; color:var(--ink);
+    margin:0 0 6px;}
+  .quiz-cta p{font-size:14px; color:var(--muted); margin:0 0 16px;}
+  .quiz-cta a{display:inline-block; background:var(--orange); color:#fff; text-decoration:none;
+    font-family:var(--font-display); font-weight:600; font-size:12.5px; letter-spacing:.18em;
+    text-transform:uppercase; padding:14px 30px; transition:background .15s;}
+  .quiz-cta a:hover{background:var(--orange-deep);}
 
   /* ---------- ORDER ---------- */
   .order-row{text-align:center; margin:28px 0 4px;}
@@ -385,7 +414,7 @@
 <header class="hero">
  <div class="frame">
   <div class="kicker"><img src="assets/llv-logo-white.png" alt="La Levain"><span>Mid-Autumn 2026</span></div>
-  <h1>Discover a World of Flavours</h1>
+  <h1><span class="w" style="--i:0">Discover</span> <span class="w" style="--i:1">a</span> <span class="w" style="--i:2">World</span> <span class="w" style="--i:3">of</span> <span class="w" style="--i:4">Flavours</span></h1>
   <p class="tagline">Global inspirations. Unforgettable flavours. Made in Singapore.</p>
   <p>The thinking, the ingredients and the craft behind every flavour this Mid-Autumn.</p>
  </div>
@@ -464,6 +493,7 @@
         <p>The elegant packaging reflects the premium quality of the mooncakes it holds, and adds an extra touch of sophistication to the gift.</p>
       </details>
     </div>
+    <img class="story-photo" loading="lazy" src="assets/brandstory-moodshot.webp?v=1" alt="La Levain Mid-Autumn mooncakes at an afternoon tea table">
     <p class="closer">We're redefining what Mid-Autumn can taste like.</p>
   </section>
 
@@ -880,6 +910,12 @@
 
     <div class="order-row"><a href="https://www.lalevain.com/product-category/all-products/mid-autumn-mooncakes/" target="_blank" rel="noopener">View the Collection</a><span class="sub">Every set, on our online store</span></div>
 
+    <div class="quiz-cta">
+      <h3>Need help deciding?</h3>
+      <p>Answer five quick questions and we'll match you to your mooncake.</p>
+      <a href="#quiz">Take the flavour quiz</a>
+    </div>
+
   </section>
 
   <!-- PASTE COMPARISON -->
@@ -967,7 +1003,7 @@
 (function(){
   document.documentElement.classList.add('js');
   var targets = document.querySelectorAll(
-    '.approach, .brandstory, .chef, .index, .type-head, .type-banner, .type-intro, .flavour, .order-row, .paste, .storage, .banner-row img');
+    '.approach, .brandstory, .chef, .index, .type-head, .type-banner, .type-intro, .flavour, .order-row, .quiz-cta, .paste, .storage, .banner-row img');
   if (!('IntersectionObserver' in window)) { return; }
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -1026,7 +1062,7 @@
   /* lightbox */
   var lb = document.getElementById('lightbox');
   var lbImg = lb.querySelector('img');
-  document.querySelectorAll('.flavour-photo img, .type-banner, .banner-row img, .chef-photo img').forEach(function(img){
+  document.querySelectorAll('.flavour-photo img, .type-banner, .banner-row img, .chef-photo img, .story-photo').forEach(function(img){
     img.addEventListener('click', function(){
       lbImg.src = img.src;
       lbImg.alt = img.alt;
