@@ -188,6 +188,23 @@
   .pill.say svg{width:13px; height:13px;}
   .pill.say:hover, .pill.say.playing{background:var(--gold); color:#fff; border-color:var(--gold);}
 
+
+  /* ---------- NAV ACTIVE + PROGRESS ---------- */
+  .jumpnav a.active{color:var(--gold-soft); border-bottom-color:var(--gold);}
+  .jumpnav .progress{position:absolute; left:0; bottom:-1px; height:2px; width:0;
+    background:var(--gold); transition:width .1s linear;}
+  .jumpnav{position:sticky;}
+
+  /* ---------- LIGHTBOX ---------- */
+  .flavour-photo img, .type-banner, .banner-row img, .chef-photo img{cursor:zoom-in;}
+  .lightbox{position:fixed; inset:0; background:rgba(30,18,10,.92); z-index:100;
+    display:none; align-items:center; justify-content:center; padding:30px; cursor:zoom-out;}
+  .lightbox.open{display:flex;}
+  .lightbox img{max-width:min(92vw,900px); max-height:88vh; display:block;
+    border:1px solid var(--gold); background:#fff; padding:6px;}
+  .lightbox .lb-close{position:absolute; top:18px; right:22px; background:none; border:none;
+    color:var(--gold-soft); font-size:30px; line-height:1; cursor:pointer; font-family:var(--font-body);}
+
   /* ---------- ORDER ---------- */
   .order-row{text-align:center; margin:28px 0 4px;}
   .order-row a{display:inline-block; background:var(--orange); color:#fff; text-decoration:none;
@@ -295,7 +312,7 @@
  </div>
 </header>
 
-<nav class="jumpnav">
+<nav class="jumpnav" style="position:sticky;">
   <div class="in">
     <a href="#story">Story</a>
     <a href="#chef">Chef</a>
@@ -307,6 +324,7 @@
     <a href="#packaging">Packaging</a>
     <a href="#storage">Storage</a>
   </div>
+  <div class="progress" id="navProgress"></div>
 </nav>
 
 <div class="wrap">
@@ -872,6 +890,53 @@
       player.play().catch(function(){ btn.classList.remove('playing'); });
     });
   });
+})();
+</script>
+
+<div class="lightbox" id="lightbox"><button class="lb-close" aria-label="Close">&times;</button><img alt=""></div>
+<script>
+(function(){
+  /* active nav highlight */
+  var links = document.querySelectorAll('.jumpnav a');
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var secs = [];
+  Object.keys(map).forEach(function(id){
+    var el = document.getElementById(id);
+    if (el) secs.push(el);
+  });
+  function setActive(){
+    var pos = window.scrollY + window.innerHeight * 0.28;
+    var current = null;
+    secs.forEach(function(el){ if (el.offsetTop <= pos) current = el.id; });
+    links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#' + current); });
+  }
+  window.addEventListener('scroll', setActive, {passive:true});
+  setActive();
+
+  /* reading progress */
+  var bar = document.getElementById('navProgress');
+  function setProgress(){
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  }
+  window.addEventListener('scroll', setProgress, {passive:true});
+  setProgress();
+
+  /* lightbox */
+  var lb = document.getElementById('lightbox');
+  var lbImg = lb.querySelector('img');
+  document.querySelectorAll('.flavour-photo img, .type-banner, .banner-row img, .chef-photo img').forEach(function(img){
+    img.addEventListener('click', function(){
+      lbImg.src = img.src;
+      lbImg.alt = img.alt;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  });
+  function closeLb(){ lb.classList.remove('open'); document.body.style.overflow = ''; }
+  lb.addEventListener('click', closeLb);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeLb(); });
 })();
 </script>
 </body>
