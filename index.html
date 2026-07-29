@@ -45,6 +45,21 @@
   .approach .pillars span{background:rgba(255,255,255,.16); border:1px solid rgba(255,255,255,.3);
     padding:6px 14px; border-radius:999px; font-size:13px; font-weight:400;}
 
+  header.hero .tagline{font-family:'Fraunces',serif; font-size:clamp(17px,2.6vw,21px);
+    color:#fff; margin:0 auto 14px; max-width:640px; font-style:italic;}
+
+  .brandstory{margin:0 0 6px; background:#fff; border:1px solid var(--cream2); border-radius:16px; padding:28px 30px;}
+  .brandstory h2{font-family:'Fraunces',serif; font-weight:500; color:var(--green); font-size:25px; margin:0 0 6px;}
+  .brandstory .lead{font-size:15px; color:#3a2f22; margin:0;}
+  .brandstory .grid{display:grid; grid-template-columns:1fr 1fr; gap:18px; margin-top:18px;}
+  .brandstory .col{background:var(--cream); border:1px solid var(--cream2); border-radius:12px; padding:18px 20px;}
+  .brandstory .col h4{margin:0 0 8px; font-family:'Poppins'; font-weight:600; font-size:15px; color:var(--orange);}
+  .brandstory .col p{font-size:14px; margin:0; color:#3a2f22;}
+  .brandstory .closer{margin:20px 0 0; font-family:'Fraunces',serif; font-size:19px; color:var(--green); text-align:center;}
+  @media (max-width:640px){ .brandstory .grid{grid-template-columns:1fr;} }
+
+  .pill.new{background:var(--orange); color:#fff; margin-left:6px;}
+
   .type{margin:56px 0 0;}
   .type-head{display:flex; align-items:baseline; gap:14px; flex-wrap:wrap;
     border-bottom:2px solid var(--orange); padding-bottom:12px;}
@@ -130,6 +145,7 @@
 <header class="hero">
   <div class="kicker">La Levain · Mid-Autumn 2026</div>
   <h1>The Story Behind Our Mooncakes</h1>
+  <p class="tagline">Global inspirations. Unforgettable flavours. Made in Singapore.</p>
   <p>A reference for the team. The thinking, the ingredients and the craft behind every flavour this year, so we can all tell the same story.</p>
 </header>
 
@@ -144,6 +160,41 @@
       <span>Balanced by food science</span>
       <span>Natural colouring only</span>
     </div>
+  </section>
+
+  <!-- BRAND STORY -->
+  <section class="brandstory">
+    <h2>The brand story</h2>
+    <p class="lead">This is the pitch, in one breath. La Levain invites you to experience mooncakes like never before. Every artisan mooncake is made in our own kitchen in Singapore with premium ingredients, and carries Chef Wythe's bold creativity and deliberate, meticulous craftsmanship. When regular yuzu proved too weak against Uji matcha, it became Valrhona yuzu chocolate. That's the standard we hold every flavour to.</p>
+    <div class="grid">
+      <div class="col">
+        <h4>Made in Singapore</h4>
+        <p>Everything is made in our own kitchen here in Singapore, never outsourced. Global inspirations, cooked at home.</p>
+      </div>
+      <div class="col">
+        <h4>Sourced from around the world</h4>
+        <p>We bring in the finest ingredients from around the globe. Uji matcha, Valrhona chocolate, Illy coffee, Elle &amp; Vire butter, Hokkaido milk. Every bite should be an exquisite experience.</p>
+      </div>
+      <div class="col">
+        <h4>Made with health in mind</h4>
+        <p>Deliberate choices, not accidents. Our Momoyama skin is lower in sugar, and our Teochew mooncakes are baked, never deep fried, so they're less oily than the traditional way.</p>
+      </div>
+      <div class="col">
+        <h4>Hand-formed, one by one</h4>
+        <p>These are a labour of love. Each mooncake is shaped by hand, and that intricate manual craftsmanship is what makes every piece one of a kind.</p>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="col">
+        <h4>No one misses out</h4>
+        <p>Vegetarian friendly options are available across the range, so everyone at the table gets to celebrate. <span class="note-inline confirm">Confirm with Chef which exact flavours before promising a customer.</span></p>
+      </div>
+      <div class="col">
+        <h4>The box matches what's inside</h4>
+        <p>The elegant packaging reflects the premium quality of the mooncakes it holds, and adds an extra touch of sophistication to the gift.</p>
+      </div>
+    </div>
+    <p class="closer">We're redefining what Mid-Autumn can taste like.</p>
   </section>
 
   <!-- TYPE 1 -->
@@ -228,7 +279,7 @@
     <img class="type-banner" src="assets/group-momoyama.jpg" alt="The Momoyama Cantonese mooncake range">
 
     <div class="type-intro">
-      When La Levain started making mooncakes, we wanted a range that showed off the brand's <strong>modern, fusion</strong> character, so we chose to work with Momoyama skin. Momoyama lets the skin take on <strong>colour from natural ingredients</strong>, instead of the baked brown skin you find on traditional mooncakes. It is also <strong>lower in sugar</strong>.
+      When La Levain started making mooncakes, we wanted a range that showed off the brand's <strong>modern, fusion</strong> character, so we chose to work with Momoyama skin. Momoyama lets the skin take on <strong>colour from natural ingredients</strong>, instead of the baked brown skin you find on traditional mooncakes. It is also <strong>lower in sugar</strong>. For 2026 the range welcomes <strong>two new flavours</strong>: Chocolate Lotus with Pistachio Crunch, and Mixed Berry Lotus with Raspberry Rose.
     </div>
 
     <div class="flavour">
@@ -262,7 +313,7 @@
     <div class="flavour">
       <div class="flavour-photo"><img src="assets/choc-pistachio.jpg" alt="Chocolate Lotus with Pistachio Crunch mooncake"></div>
       <div class="flavour-body">
-        <span class="pill">Flavour 3</span>
+        <span class="pill">Flavour 3</span><span class="pill new">New for 2026</span>
         <h3>Chocolate Lotus with Pistachio Crunch</h3>
         <p class="story">Inspired by the famous, viral pistachio kunafa creations, rebuilt so it keeps well in a mooncake.</p>
         <ul>
@@ -279,7 +330,7 @@
     <div class="flavour">
       <div class="flavour-photo"><img src="assets/berry-rose.jpg" alt="Mixed Berry Lotus with Raspberry Rose mooncake"></div>
       <div class="flavour-body">
-        <span class="pill">Flavour 4</span>
+        <span class="pill">Flavour 4</span><span class="pill new">New for 2026</span>
         <h3>Mixed Berry Lotus with Raspberry Rose</h3>
         <p class="story">This year's concept carries floral elements, so Chef Wythe wanted to experiment with a floral flavour. The flower he chose was rose. Mooncakes are usually sweet, and Chef leans towards sour profiles and raspberry, so he paired the rose with freeze-dried raspberry.</p>
         <ul>
