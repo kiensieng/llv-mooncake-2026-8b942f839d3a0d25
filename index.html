@@ -97,6 +97,26 @@
     color:var(--orange-deep); text-align:center;}
   @media (max-width:640px){ .brandstory .grid{grid-template-columns:1fr;} }
 
+
+  /* ---------- CHEF ---------- */
+  .chef{margin:26px 0 0; background:#fff; border:1px solid var(--gold-line); padding:34px 36px;
+    display:flex; gap:30px; align-items:center;}
+  .chef-photo{flex:0 0 280px;}
+  .chef-photo img{width:100%; display:block; border:1px solid var(--gold-line); padding:6px; background:#fff;}
+  .chef-body{flex:1; min-width:0;}
+  .chef-body h2{font-family:var(--font-display); font-weight:700; text-transform:uppercase;
+    letter-spacing:.12em; color:var(--orange-deep); font-size:21px; margin:0 0 4px;}
+  .chef-body .role{font-family:var(--font-accent); font-size:14px; color:var(--gold); margin:0 0 16px;}
+  .chef-body .bio{font-size:15px; color:#4A392B; margin:0 0 12px;}
+  .chef-body .bio:last-of-type{margin-bottom:16px;}
+  .chef-body .creds{border-top:1px dashed var(--gold-line); padding-top:14px; font-size:12.5px;
+    color:var(--muted); line-height:1.8;}
+  .chef-body .creds strong{color:var(--orange-deep); font-weight:600;}
+  @media (max-width:700px){
+    .chef{flex-direction:column; align-items:stretch; padding:26px 22px;}
+    .chef-photo{flex:none; width:70%; max-width:280px; margin:0 auto;}
+  }
+
   /* ---------- FLAVOUR INDEX ---------- */
   .index{margin:26px 0 0; background:#fff; border:1px solid var(--gold-line); padding:34px 36px;}
   .index h2{font-family:var(--font-display); font-weight:700; text-transform:uppercase;
@@ -263,6 +283,7 @@
 <nav class="jumpnav">
   <div class="in">
     <a href="#story">Story</a>
+    <a href="#chef">Chef</a>
     <a href="#flavours">Flavours</a>
     <a href="#traditional">Traditional</a>
     <a href="#momoyama">Momoyama</a>
@@ -319,6 +340,18 @@
       </details>
     </div>
     <p class="closer">We're redefining what Mid-Autumn can taste like.</p>
+  </section>
+
+  <!-- CHEF -->
+  <section class="chef" id="chef">
+    <div class="chef-photo"><img loading="lazy" src="assets/chef-wythe.webp" alt="Chef Wythe Ng, Co-owner and Executive Chef of La Levain"></div>
+    <div class="chef-body">
+      <h2>Meet Chef Wythe</h2>
+      <p class="role">Wythe Ng &middot; Co-owner &amp; Executive Chef, La Levain</p>
+      <p class="bio">Born into a family of bakers, cake and pastry course through my veins. Since 2004 I've been researching and studying how to perfect flavours and textures, and I haven't stopped since, thanks to the people who constantly challenge me to be a better baker.</p>
+      <p class="bio">I firmly believe in respecting age-old principles and techniques while redefining what artisan baking can be. That belief is in every mooncake in this collection: tradition, honoured and reimagined.</p>
+      <p class="creds"><strong>Before La Levain:</strong> Head Baker at Bakery Brera and Keong Saik Bakery &middot; opening teams of Baker &amp; Cook and Asanoya Boulangerie &middot; World Gourmet Awards Baker of the Year finalist</p>
+    </div>
   </section>
 
   <!-- FLAVOUR INDEX -->
