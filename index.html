@@ -286,6 +286,34 @@
     color:var(--gold-soft); font-size:30px; line-height:1; cursor:pointer; font-family:var(--font-body);}
 
 
+
+  /* ---------- SPACE INTRO ---------- */
+  .intro{position:fixed; inset:0; z-index:200; background:#000; overflow:hidden;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    transition:opacity .9s ease;}
+  .intro.fade{opacity:0; pointer-events:none;}
+  .intro video{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .intro video.hidden{opacity:0;}
+  .intro-ui{position:relative; z-index:2; text-align:center; padding:0 24px;
+    transition:opacity .6s ease;}
+  .intro.zooming .intro-ui{opacity:0;}
+  .intro-ui img{height:52px; width:auto; display:block; margin:0 auto 22px;
+    filter:drop-shadow(0 2px 12px rgba(0,0,0,.6));}
+  .intro-ui .i-kicker{font-family:var(--font-display); font-weight:600; font-size:12px;
+    letter-spacing:.42em; text-transform:uppercase; color:var(--gold-soft); margin-bottom:14px;}
+  .intro-ui h2{font-family:var(--font-display); font-weight:700; text-transform:uppercase;
+    letter-spacing:.1em; font-size:clamp(24px,4.5vw,42px); color:#fff; margin:0 0 26px;
+    line-height:1.2; text-shadow:0 2px 24px rgba(0,0,0,.7);}
+  .intro-ui .i-hint{font-family:var(--font-body); font-weight:300; font-size:13px;
+    color:#E8DCC8; letter-spacing:.18em; text-transform:uppercase;
+    animation:hintpulse 2.4s ease-in-out infinite;}
+  @keyframes hintpulse{0%,100%{opacity:.55;} 50%{opacity:1;}}
+  body.intro-active{overflow:hidden;}
+  body.intro-active header.hero .kicker,
+  body.intro-active header.hero h1 .w,
+  body.intro-active header.hero .tagline,
+  body.intro-active header.hero p:not(.tagline){animation-play-state:paused;}
+
   /* ---------- HERO ENTRANCE ---------- */
   header.hero .kicker{opacity:0; animation:herofade .8s ease .1s forwards;}
   header.hero h1 .w{display:inline-block; opacity:0; transform:translateY(22px);
@@ -411,6 +439,62 @@
 </style>
 </head>
 <body>
+
+<script>
+(function(){
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!sessionStorage.getItem('llvIntroSeen') && !reduced) {
+    document.documentElement.classList.add('show-intro');
+  }
+})();
+</script>
+<div class="intro" id="intro" hidden>
+  <video id="introLoop" class="iv" muted loop playsinline autoplay preload="auto" poster="assets/intro/earth-poster.jpg?v=1">
+    <source src="assets/intro/earth-loop.mp4?v=1" type="video/mp4">
+  </video>
+  <video id="introZoom" class="iv hidden" muted playsinline preload="auto">
+    <source src="assets/intro/earth-zoom.mp4?v=1" type="video/mp4">
+  </video>
+  <div class="intro-ui">
+    <img src="assets/llv-logo-white.png" alt="La Levain">
+    <div class="i-kicker">Mid-Autumn 2026</div>
+    <h2>Discover a World of Flavours</h2>
+    <div class="i-hint">Tap anywhere to begin</div>
+  </div>
+</div>
+<script>
+(function(){
+  var intro = document.getElementById('intro');
+  if (!document.documentElement.classList.contains('show-intro')) { intro.remove(); return; }
+  intro.hidden = false;
+  document.body.classList.add('intro-active');
+  var loopV = document.getElementById('introLoop');
+  var zoomV = document.getElementById('introZoom');
+  var done = false;
+  function dismiss(){
+    if (done) return; done = true;
+    sessionStorage.setItem('llvIntroSeen', '1');
+    intro.classList.add('fade');
+    document.body.classList.remove('intro-active');
+    setTimeout(function(){ intro.remove(); }, 1000);
+  }
+  intro.addEventListener('click', function(){
+    if (done || intro.classList.contains('zooming')) return;
+    intro.classList.add('zooming');
+    if (zoomV.readyState >= 3) {
+      zoomV.classList.remove('hidden');
+      loopV.pause();
+      zoomV.play().catch(dismiss);
+      zoomV.addEventListener('timeupdate', function(){
+        if (zoomV.duration && zoomV.currentTime > zoomV.duration - 0.55) dismiss();
+      });
+      zoomV.addEventListener('ended', dismiss);
+      setTimeout(dismiss, 9000);
+    } else { dismiss(); }
+  });
+  setTimeout(function(){ if (!done && loopV.readyState < 2) dismiss(); }, 6000);
+})();
+</script>
 
 <header class="hero">
  <div class="frame">
