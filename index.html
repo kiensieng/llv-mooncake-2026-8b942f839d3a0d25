@@ -1327,37 +1327,50 @@
   function buildCard(key){
     var f = F[key];
     return document.fonts.ready.then(function(){
-      return Promise.all([loadImg('assets/llv-logo-white.png'), loadImg(f.img)]);
+      return Promise.all([loadImg('assets/llv-logo-dark.png'), loadImg(f.img)]);
     }).then(function(imgs){
       var c = document.createElement('canvas'); c.width = 1080; c.height = 1350;
       var x = c.getContext('2d');
-      x.fillStyle = '#382416'; x.fillRect(0, 0, 1080, 1350);
-      x.strokeStyle = '#B08A4A'; x.lineWidth = 2;
-      x.strokeRect(36, 36, 1008, 1278); x.strokeRect(48, 48, 984, 1254);
-      var logo = imgs[0], lw = 250, lh = lw * logo.height / logo.width;
-      x.drawImage(logo, (1080 - lw) / 2, 100, lw, lh);
-      x.textAlign = 'center';
-      try { x.letterSpacing = '10px'; } catch(e){}
-      x.fillStyle = '#B08A4A';
-      x.font = '600 26px "Josefin Sans", sans-serif';
-      x.fillText('MID-AUTUMN 2026', 540, 268);
+      /* cream editorial card */
+      x.fillStyle = '#FAF3E7'; x.fillRect(0, 0, 1080, 1350);
+      /* full-bleed photo across the top */
+      x.drawImage(imgs[1], 0, 86, 640, 468, 0, 0, 1080, 790);
+      /* orange chip overlapping the photo edge */
+      x.textAlign = 'left';
+      try { x.letterSpacing = '6px'; } catch(e){}
+      x.font = '600 24px "Josefin Sans", sans-serif';
+      var chipText = 'MY MOONCAKE MATCH';
+      var tw = x.measureText(chipText).width;
+      x.fillStyle = '#F26822';
+      x.fillRect(70, 756, tw + 56, 66);
       x.fillStyle = '#FFFFFF';
-      x.font = '700 52px "Josefin Sans", sans-serif';
-      x.fillText('MY MOONCAKE MATCH', 540, 336);
+      x.fillText(chipText, 98, 799);
+      try { x.letterSpacing = '2px'; } catch(e){}
+      /* flavour name, left aligned, espresso */
+      x.font = '700 58px "Josefin Sans", sans-serif';
+      x.fillStyle = '#382416';
+      var lines = wrapText(x, f.name.toUpperCase(), 940);
+      var y = 928;
+      lines.forEach(function(l){ x.fillText(l, 70, y); y += 70; });
       try { x.letterSpacing = '0px'; } catch(e){}
-      x.fillStyle = '#FFFFFF'; x.fillRect(248, 386, 584, 584);
-      x.drawImage(imgs[1], 260, 398, 560, 560);
-      x.font = '700 46px "Josefin Sans", sans-serif';
-      x.fillStyle = '#FFFFFF';
-      var lines = wrapText(x, f.name.toUpperCase(), 880);
-      var y = 1058;
-      lines.forEach(function(l){ x.fillText(l, 540, y); y += 58; });
-      x.font = '30px "Bree Serif", serif';
-      x.fillStyle = '#D9C29A';
-      x.fillText(f.range, 540, y + 8);
-      x.font = '300 27px Poppins, sans-serif';
-      x.fillStyle = '#FAF3E7';
-      x.fillText('Find your flavour at midautumn2026.lalevain.com', 540, 1258);
+      /* range in gold serif */
+      x.font = '32px "Bree Serif", serif';
+      x.fillStyle = '#B08A4A';
+      x.fillText(f.range, 70, y + 10);
+      /* footer: divider, dark logo left, URL right */
+      x.strokeStyle = '#E3D2B4'; x.lineWidth = 1;
+      x.beginPath(); x.moveTo(70, 1170); x.lineTo(1010, 1170); x.stroke();
+      var logo = imgs[0], lh = 56, lw = lh * logo.width / logo.height;
+      x.drawImage(logo, 70, 1204, lw, lh);
+      x.textAlign = 'right';
+      x.font = '300 25px Poppins, sans-serif';
+      x.fillStyle = '#8A7660';
+      x.fillText('Find your flavour at', 1010, 1224);
+      x.font = '500 25px Poppins, sans-serif';
+      x.fillStyle = '#382416';
+      x.fillText('midautumn2026.lalevain.com', 1010, 1258);
+      /* orange baseline */
+      x.fillStyle = '#F26822'; x.fillRect(0, 1334, 1080, 16);
       return new Promise(function(res){ c.toBlob(res, 'image/png'); });
     });
   }
