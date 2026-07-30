@@ -1331,8 +1331,8 @@
       '<div class="r-links"><a class="primary" href="' + top.buy + '" target="_blank" rel="noopener">Order this set</a>' +
       '<a class="ghost" href="' + top.a + '">' + BOOK + 'Read its story</a>' +
       '<a class="ghost" href="#quiz" id="shareMatch">' + SHARE + 'Share my match</a></div></div></div>' +
-      '<div class="runners"><div class="r-label">Mooncake Besties</div><div class="row">' +
-      [r1, r2].map(function(r){ return '<a href="' + r.a + '"><img src="' + r.illus + '" alt=""><span>' + r.name + '</span></a>'; }).join('') +
+      '<div class="runners"><div class="r-label">Mooncake Bestie</div><div class="row">' +
+      [F[top.bestie]].map(function(r){ return '<a href="' + r.a + '"><img src="' + r.illus + '" alt=""><span>' + r.name + '</span></a>'; }).join('') +
       '</div></div><button class="again">Start again</button>';
     box.querySelector('.again').addEventListener('click', start);
     box.querySelector('#shareMatch').addEventListener('click', function(e){
