@@ -233,6 +233,9 @@
   .quiz .r-links a.ghost{border:1px solid var(--gold); color:var(--orange-deep);}
   .quiz .r-links a.ghost:hover{background:var(--cream2);}
   .quiz .runners{margin-top:20px; padding-top:16px; border-top:1px dashed rgba(217,194,138,.4);}
+  .quiz .runners .duo{display:flex; gap:30px; flex-wrap:wrap;}
+  .quiz .runners .duo-col{flex:1 1 300px;}
+  .quiz .runners .duo-col .r-label{color:var(--gold); margin-bottom:10px;}
   .quiz .runners .r-label{margin-bottom:10px;}
   .quiz .runners .row{display:flex; gap:12px; flex-wrap:wrap;}
   .quiz .runners a{display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink);
@@ -1250,21 +1253,21 @@
 <script>
 (function(){
   var F = {
-    redbean:{name:"Red Bean, Mandarin Peel & Matcha Lotus", range:"Traditional Cantonese", img:"assets/trad-redbean-matcha.webp?v=2", illus:"assets/illus/redbean.webp?v=6", a:"#f-redbean", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"Slow-cooked red bean with aged Xinhui chenpi on one side, matcha lotus on the other. Deep, fragrant and quietly complex.", cute:"You're an old soul with good taste, the kind who knows the classics got famous for a reason.", traits:["📜 old soul", "🍵 deep conversationalist", "🧩 quietly complex"], bestie:"peach"},
-    lemon:{name:"White Lotus, Lemon Peel & Macadamia", range:"Traditional Cantonese", img:"assets/trad-lemon-macadamia.webp?v=2", illus:"assets/illus/lemon.webp?v=6", a:"#f-lemon", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"Inspired by Italian lemon candy. Lemon peel lifts the sweetness so every bite finishes clean, with buttery macadamia for bite.", cute:"Sunshine in human form. You like your sweetness with a wink of zest.", traits:["☀️ sunshine energy", "😏 witty comebacks", "🍋 refreshingly honest"], bestie:"mango"},
-    melon:{name:"White Lotus with Melon Seeds", range:"Traditional Cantonese", img:"assets/trad-melon-seeds.webp?v=2", illus:"assets/illus/melon.webp?v=6", a:"#f-melon", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"The classic, left exactly as generations have loved it. Dense, fragrant lotus paste made the old way.", cute:"You don't fix what isn't broken, and honestly, we respect that.", traits:["🏛 respects the classics", "🤝 the reliable one", "😌 zero drama"], bestie:"yolk"},
-    yolk:{name:"White Lotus with Single Yolk", range:"Traditional Cantonese", img:"assets/trad-single-yolk.webp?v=2", illus:"assets/illus/yolk.webp?v=6", a:"#f-yolk", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"The one everyone knows, kept honest. White lotus around a single golden yolk.", cute:"A traditionalist with standards. The golden centre says it all.", traits:["💛 heart of gold", "📏 has standards", "🫖 reunion dinner regular"], bestie:"melon"},
-    saltedyolk:{name:"White Lotus with Salted Egg Yolk", range:"Momoyama Cantonese", img:"assets/salted-yolk.webp?v=2", illus:"assets/illus/saltedyolk.webp?v=6", a:"#f-saltedyolk", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"The classic flavour, presented in our soft, lower-sugar Momoyama skin. Tradition in modern dress.", cute:"Classic heart, modern wardrobe. You like tradition dressed up a little.", traits:["🎓 classic taste, modern fit", "👔 best dressed", "⚖️ perfectly balanced"], bestie:"teosalted"},
-    matchayuzu:{name:"Uji Matcha & Valrhona Yuzu Chocolate", range:"Momoyama Cantonese", img:"assets/matcha-yuzu.webp?v=2", illus:"assets/illus/matchayuzu.webp?v=6", a:"#f-matchayuzu", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"Bright yuzu cutting through earthy Uji matcha. Refreshing, multi-dimensional and very Japanese in spirit.", cute:"Calm on the outside, plot twist on the inside. Zen with a citrus streak.", traits:["🧘 zen master", "⚡ full of surprises", "🍊 secretly zesty"], bestie:"berryrose"},
-    pistachio:{name:"Chocolate Lotus with Pistachio Crunch", range:"Momoyama Cantonese · New", img:"assets/choc-pistachio.webp?v=2", illus:"assets/illus/pistachio.webp?v=6", a:"#f-pistachio", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"Inspired by the viral pistachio kunafa, rebuilt with Belgian chocolate lotus and real pistachio crunch.", cute:"You saw the pistachio trend and said yes please, but make it chic.", traits:["💅 trend spotter", "💎 effortlessly chic", "🎯 knows what they want"], bestie:"fleur"},
-    berryrose:{name:"Mixed Berry Lotus with Raspberry Rose", range:"Momoyama Cantonese · New", img:"assets/berry-rose.webp?v=2", illus:"assets/illus/berryrose.webp?v=6", a:"#f-berryrose", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"Rose and freeze-dried raspberry over a mixed berry lotus. Floral, tart and this year's boldest newcomer.", cute:"Romantic, a little dramatic, always the most interesting person at the table.", traits:["🌹 hopeless romantic", "🎭 main character energy", "🔥 a little dramatic"], bestie:"matchayuzu"},
-    mango:{name:"Mango Pomelo with Grapefruit", range:"Mini Momoyama", img:"assets/mango-pomelo.webp?v=2", illus:"assets/illus/mango.webp?v=6", a:"#f-mango", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"Singapore's favourite dessert as a mooncake: Aiwen mango, candied pomelo and a grapefruit edge.", cute:"Sweet, sunny and just tart enough to keep everyone guessing.", traits:["☀️ sunny disposition", "🗣 sweet talker", "😜 keeps you guessing"], bestie:"lemon"},
-    peach:{name:"Peach Jasmine Oolong", range:"Mini Momoyama", img:"assets/peach-oolong.webp?v=2", illus:"assets/illus/peach.webp?v=6", a:"#f-peach", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"Two tea lotus pastes with candied white peach. Years of tea experiments, finally in balance.", cute:"Soft-spoken but deep. You're the cup of tea everyone needs.", traits:["🍑 soft-spoken", "🌊 still waters run deep", "🌸 gentle soul"], bestie:"redbean"},
-    coffee:{name:"Illy Coffee Lava", range:"Mini Momoyama", img:"assets/coffee-lava.webp?v=2", illus:"assets/illus/coffee.webp?v=6", a:"#f-coffee", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"100% Arabica Illy coffee with a molten lava centre. For the ones who order a long black.", cute:"You run on coffee and melt for a molten centre. We see you.", traits:["☕ runs on caffeine", "🌙 night owl", "🫠 soft on the inside"], bestie:"teosesame"},
-    fleur:{name:"Fleur de Cao", range:"Mini Momoyama", img:"assets/fleur-de-cao.webp?v=2", illus:"assets/illus/fleur.webp?v=6", a:"#f-fleur", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"Cookies and cream, turned into a mooncake with our signature Fleur de Cao cookie and Belgian chocolate.", cute:"Grew up on cookies and cream, glowed up to this.", traits:["🍪 kid at heart", "✨ had a glow up", "🛋 comfort seeker"], bestie:"pistachio"},
-    teosalted:{name:"Teochew Salted Egg", range:"Teochew · flaky crust", img:"assets/teochew-saltedegg.webp?v=2", illus:"assets/illus/teosalted.webp?v=6", a:"#f-teosalted", buy:"https://www.lalevain.com/product/baked-teochew-mooncake/", blurb:"Hand-folded flaky crust in French butter around a rich salted egg heart. Baked, never fried.", cute:"Flaky in pastry only. You show up buttery, golden and reliable.", traits:["🥐 flaky in pastry only", "🧈 warm and buttery", "🤝 always shows up"], bestie:"saltedyolk"},
-    teosesame:{name:"Black Sesame Hokkaido Milk, Mochi", range:"Teochew · flaky crust", img:"assets/teochew-blacksesame.webp?v=2", illus:"assets/illus/teosesame.webp?v=6", a:"#f-teosesame", buy:"https://www.lalevain.com/product/baked-teochew-mooncake/", blurb:"Hong Kong zee ma woo meets Hokkaido milk, with a chewy mochi centre inside flaky layers.", cute:"Quietly complex, pleasantly chewy, impossible not to like.", traits:["🖤 mysterious aura", "🧸 secretly soft", "😊 impossible to dislike"], bestie:"coffee"},
-    teobobo:{name:"Teochew Bobochacha Mochi", range:"Teochew · flaky crust", img:"assets/teochew-bobochacha.webp?v=2", illus:"assets/illus/teobobo.webp?v=7", a:"#f-teobobo", buy:"https://www.lalevain.com/product/baked-teochew-mooncake/", blurb:"Our signature. Taiwanese yam, sea salt coconut custard and a coconut mochi heart. Bobochacha, reborn.", cute:"Local at heart, extra by nature. You'd order the bobochacha twice.", traits:["🇸🇬 proudly local", "💁 extra by nature", "🎉 life of the party"], bestie:"mango"}
+    redbean:{name:"Red Bean, Mandarin Peel & Matcha Lotus", range:"Traditional Cantonese", img:"assets/trad-redbean-matcha.webp?v=2", illus:"assets/illus/redbean.webp?v=6", a:"#f-redbean", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"Slow-cooked red bean with aged Xinhui chenpi on one side, matcha lotus on the other. Deep, fragrant and quietly complex.", cute:"You're an old soul with good taste, the kind who knows the classics got famous for a reason.", traits:["📜 old soul", "🍵 deep conversationalist", "🧩 quietly complex"], bestie:"peach", opp:"fleur"},
+    lemon:{name:"White Lotus, Lemon Peel & Macadamia", range:"Traditional Cantonese", img:"assets/trad-lemon-macadamia.webp?v=2", illus:"assets/illus/lemon.webp?v=6", a:"#f-lemon", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"Inspired by Italian lemon candy. Lemon peel lifts the sweetness so every bite finishes clean, with buttery macadamia for bite.", cute:"Sunshine in human form. You like your sweetness with a wink of zest.", traits:["☀️ sunshine energy", "😏 witty comebacks", "🍋 refreshingly honest"], bestie:"mango", opp:"teosesame"},
+    melon:{name:"White Lotus with Melon Seeds", range:"Traditional Cantonese", img:"assets/trad-melon-seeds.webp?v=2", illus:"assets/illus/melon.webp?v=6", a:"#f-melon", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"The classic, left exactly as generations have loved it. Dense, fragrant lotus paste made the old way.", cute:"You don't fix what isn't broken, and honestly, we respect that.", traits:["🏛 respects the classics", "🤝 the reliable one", "😌 zero drama"], bestie:"yolk", opp:"berryrose"},
+    yolk:{name:"White Lotus with Single Yolk", range:"Traditional Cantonese", img:"assets/trad-single-yolk.webp?v=2", illus:"assets/illus/yolk.webp?v=6", a:"#f-yolk", buy:"https://www.lalevain.com/product/traditional-cantonese-mooncake/", blurb:"The one everyone knows, kept honest. White lotus around a single golden yolk.", cute:"A traditionalist with standards. The golden centre says it all.", traits:["💛 heart of gold", "📏 has standards", "🫖 reunion dinner regular"], bestie:"melon", opp:"pistachio"},
+    saltedyolk:{name:"White Lotus with Salted Egg Yolk", range:"Momoyama Cantonese", img:"assets/salted-yolk.webp?v=2", illus:"assets/illus/saltedyolk.webp?v=6", a:"#f-saltedyolk", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"The classic flavour, presented in our soft, lower-sugar Momoyama skin. Tradition in modern dress.", cute:"Classic heart, modern wardrobe. You like tradition dressed up a little.", traits:["🎓 classic taste, modern fit", "👔 best dressed", "⚖️ perfectly balanced"], bestie:"teosalted", opp:"teobobo"},
+    matchayuzu:{name:"Uji Matcha & Valrhona Yuzu Chocolate", range:"Momoyama Cantonese", img:"assets/matcha-yuzu.webp?v=2", illus:"assets/illus/matchayuzu.webp?v=6", a:"#f-matchayuzu", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"Bright yuzu cutting through earthy Uji matcha. Refreshing, multi-dimensional and very Japanese in spirit.", cute:"Calm on the outside, plot twist on the inside. Zen with a citrus streak.", traits:["🧘 zen master", "⚡ full of surprises", "🍊 secretly zesty"], bestie:"berryrose", opp:"coffee"},
+    pistachio:{name:"Chocolate Lotus with Pistachio Crunch", range:"Momoyama Cantonese · New", img:"assets/choc-pistachio.webp?v=2", illus:"assets/illus/pistachio.webp?v=6", a:"#f-pistachio", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"Inspired by the viral pistachio kunafa, rebuilt with Belgian chocolate lotus and real pistachio crunch.", cute:"You saw the pistachio trend and said yes please, but make it chic.", traits:["💅 trend spotter", "💎 effortlessly chic", "🎯 knows what they want"], bestie:"fleur", opp:"yolk"},
+    berryrose:{name:"Mixed Berry Lotus with Raspberry Rose", range:"Momoyama Cantonese · New", img:"assets/berry-rose.webp?v=2", illus:"assets/illus/berryrose.webp?v=6", a:"#f-berryrose", buy:"https://www.lalevain.com/product/cantonese-mooncake-4pc/", blurb:"Rose and freeze-dried raspberry over a mixed berry lotus. Floral, tart and this year's boldest newcomer.", cute:"Romantic, a little dramatic, always the most interesting person at the table.", traits:["🌹 hopeless romantic", "🎭 main character energy", "🔥 a little dramatic"], bestie:"matchayuzu", opp:"melon"},
+    mango:{name:"Mango Pomelo with Grapefruit", range:"Mini Momoyama", img:"assets/mango-pomelo.webp?v=2", illus:"assets/illus/mango.webp?v=6", a:"#f-mango", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"Singapore's favourite dessert as a mooncake: Aiwen mango, candied pomelo and a grapefruit edge.", cute:"Sweet, sunny and just tart enough to keep everyone guessing.", traits:["☀️ sunny disposition", "🗣 sweet talker", "😜 keeps you guessing"], bestie:"lemon", opp:"peach"},
+    peach:{name:"Peach Jasmine Oolong", range:"Mini Momoyama", img:"assets/peach-oolong.webp?v=2", illus:"assets/illus/peach.webp?v=6", a:"#f-peach", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"Two tea lotus pastes with candied white peach. Years of tea experiments, finally in balance.", cute:"Soft-spoken but deep. You're the cup of tea everyone needs.", traits:["🍑 soft-spoken", "🌊 still waters run deep", "🌸 gentle soul"], bestie:"redbean", opp:"mango"},
+    coffee:{name:"Illy Coffee Lava", range:"Mini Momoyama", img:"assets/coffee-lava.webp?v=2", illus:"assets/illus/coffee.webp?v=6", a:"#f-coffee", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"100% Arabica Illy coffee with a molten lava centre. For the ones who order a long black.", cute:"You run on coffee and melt for a molten centre. We see you.", traits:["☕ runs on caffeine", "🌙 night owl", "🫠 soft on the inside"], bestie:"teosesame", opp:"matchayuzu"},
+    fleur:{name:"Fleur de Cao", range:"Mini Momoyama", img:"assets/fleur-de-cao.webp?v=2", illus:"assets/illus/fleur.webp?v=6", a:"#f-fleur", buy:"https://www.lalevain.com/product/mini-momoyama-cantonese-mooncake-new/", blurb:"Cookies and cream, turned into a mooncake with our signature Fleur de Cao cookie and Belgian chocolate.", cute:"Grew up on cookies and cream, glowed up to this.", traits:["🍪 kid at heart", "✨ had a glow up", "🛋 comfort seeker"], bestie:"pistachio", opp:"redbean"},
+    teosalted:{name:"Teochew Salted Egg", range:"Teochew · flaky crust", img:"assets/teochew-saltedegg.webp?v=2", illus:"assets/illus/teosalted.webp?v=6", a:"#f-teosalted", buy:"https://www.lalevain.com/product/baked-teochew-mooncake/", blurb:"Hand-folded flaky crust in French butter around a rich salted egg heart. Baked, never fried.", cute:"Flaky in pastry only. You show up buttery, golden and reliable.", traits:["🥐 flaky in pastry only", "🧈 warm and buttery", "🤝 always shows up"], bestie:"saltedyolk", opp:"berryrose"},
+    teosesame:{name:"Black Sesame Hokkaido Milk, Mochi", range:"Teochew · flaky crust", img:"assets/teochew-blacksesame.webp?v=2", illus:"assets/illus/teosesame.webp?v=6", a:"#f-teosesame", buy:"https://www.lalevain.com/product/baked-teochew-mooncake/", blurb:"Hong Kong zee ma woo meets Hokkaido milk, with a chewy mochi centre inside flaky layers.", cute:"Quietly complex, pleasantly chewy, impossible not to like.", traits:["🖤 mysterious aura", "🧸 secretly soft", "😊 impossible to dislike"], bestie:"coffee", opp:"lemon"},
+    teobobo:{name:"Teochew Bobochacha Mochi", range:"Teochew · flaky crust", img:"assets/teochew-bobochacha.webp?v=2", illus:"assets/illus/teobobo.webp?v=7", a:"#f-teobobo", buy:"https://www.lalevain.com/product/baked-teochew-mooncake/", blurb:"Our signature. Taiwanese yam, sea salt coconut custard and a coconut mochi heart. Bobochacha, reborn.", cute:"Local at heart, extra by nature. You'd order the bobochacha twice.", traits:["🇸🇬 proudly local", "💁 extra by nature", "🎉 life of the party"], bestie:"mango", opp:"saltedyolk"}
   };
   var QS = [
     {q:"How do you like your sweetness?", opts:[
@@ -1331,8 +1334,12 @@
       '<div class="r-links"><a class="primary" href="' + top.buy + '" target="_blank" rel="noopener">Order this set</a>' +
       '<a class="ghost" href="' + top.a + '">' + BOOK + 'Read its story</a>' +
       '<a class="ghost" href="#quiz" id="shareMatch">' + SHARE + 'Share my match</a></div></div></div>' +
-      '<div class="runners"><div class="r-label">Mooncake Bestie</div><div class="row">' +
-      [F[top.bestie]].map(function(r){ return '<a href="' + r.a + '"><img src="' + r.illus + '" alt=""><span>' + r.name + '</span></a>'; }).join('') +
+      '<div class="runners"><div class="duo">' +
+      [['Mooncake Bestie', F[top.bestie]], ['Opposites Attract', F[top.opp]]].map(function(pair){
+        var r = pair[1];
+        return '<div class="duo-col"><div class="r-label">' + pair[0] + '</div>' +
+          '<a href="' + r.a + '"><img src="' + r.illus + '" alt=""><span>' + r.name + '</span></a></div>';
+      }).join('') +
       '</div></div><button class="again">Start again</button>';
     box.querySelector('.again').addEventListener('click', start);
     box.querySelector('#shareMatch').addEventListener('click', function(e){
@@ -1359,7 +1366,7 @@
     var f = F[key];
     var bf = F[f.bestie];
     return document.fonts.ready.then(function(){
-      return Promise.all([loadImg('assets/llv-logo-dark.png'), loadImg(f.illus), loadImg(bf.illus)]);
+      return Promise.all([loadImg('assets/llv-logo-dark.png'), loadImg(f.illus), loadImg(bf.illus), loadImg(F[f.opp].illus)]);
     }).then(function(imgs){
       var c = document.createElement('canvas'); c.width = 1080; c.height = 1920;
       var x = c.getContext('2d');
@@ -1402,25 +1409,26 @@
         cx2 += w2 + 16;
       });
       y += 84;
-      try { x.letterSpacing = '5px'; } catch(e){}
-      x.font = '600 22px "Josefin Sans", sans-serif'; x.fillStyle = '#B08A4A';
-      x.fillText('MOONCAKE BESTIE', 70, y);
-      try { x.letterSpacing = '0px'; } catch(e){}
-      y += 18;
-      var bh = 150;
-      x.font = '500 30px Poppins, sans-serif';
-      var bNameLines = wrapText(x, bf.name, 560);
-      var bw = 30 + 170 + 24 + Math.min(560, Math.max.apply(null, bNameLines.map(function(l){ return x.measureText(l).width; }))) + 34;
-      x.fillStyle = '#FFFFFF'; x.fillRect(70, y, bw, bh);
-      x.strokeStyle = '#B08A4A'; x.setLineDash([9, 7]); x.lineWidth = 2;
-      x.strokeRect(70, y, bw, bh); x.setLineDash([]);
-      var ba = imgs[2];
-      var bsc = Math.min(170 / ba.width, 120 / ba.height);
-      x.fillStyle = '#FBF2EE'; x.fillRect(100, y + 15, 170, 120);
-      x.drawImage(ba, 100 + (170 - ba.width * bsc) / 2, y + 15 + (120 - ba.height * bsc) / 2, ba.width * bsc, ba.height * bsc);
-      x.fillStyle = '#382416';
-      var by2 = y + (bh - bNameLines.length * 38) / 2 + 28;
-      bNameLines.forEach(function(l){ x.fillText(l, 294, by2); by2 += 38; });
+      var pals = [['MOONCAKE BESTIE', bf, imgs[2]], ['OPPOSITES ATTRACT', F[f.opp], imgs[3]]];
+      var boxW = 455, boxH = 170, boxY = y + 18;
+      pals.forEach(function(pair, i){
+        var bx0 = 70 + i * (boxW + 30);
+        try { x.letterSpacing = '4px'; } catch(e){}
+        x.font = '600 21px "Josefin Sans", sans-serif'; x.fillStyle = '#B08A4A';
+        x.fillText(pair[0], bx0, y);
+        try { x.letterSpacing = '0px'; } catch(e){}
+        x.fillStyle = '#FFFFFF'; x.fillRect(bx0, boxY, boxW, boxH);
+        x.strokeStyle = '#B08A4A'; x.setLineDash([9, 7]); x.lineWidth = 2;
+        x.strokeRect(bx0, boxY, boxW, boxH); x.setLineDash([]);
+        var ba = pair[2];
+        var bsc = Math.min(160 / ba.width, 130 / ba.height);
+        x.fillStyle = '#FBF2EE'; x.fillRect(bx0 + 18, boxY + 20, 160, 130);
+        x.drawImage(ba, bx0 + 18 + (160 - ba.width * bsc) / 2, boxY + 20 + (130 - ba.height * bsc) / 2, ba.width * bsc, ba.height * bsc);
+        x.font = '500 26px Poppins, sans-serif'; x.fillStyle = '#382416';
+        var nml = wrapText(x, pair[1].name, boxW - 220);
+        var ny = boxY + (boxH - nml.length * 34) / 2 + 26;
+        nml.forEach(function(l){ x.fillText(l, bx0 + 196, ny); ny += 34; });
+      });
       x.strokeStyle = '#E3D2B4'; x.lineWidth = 1;
       x.beginPath(); x.moveTo(70, 1730); x.lineTo(1010, 1730); x.stroke();
       var logo = imgs[0], lh = 58, lw = lh * logo.width / logo.height;
