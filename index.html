@@ -1366,15 +1366,35 @@
     var f = F[key];
     var bf = F[f.bestie];
     return document.fonts.ready.then(function(){
-      return Promise.all([loadImg('assets/llv-logo-dark.png'), loadImg(f.illus), loadImg(bf.illus), loadImg(F[f.opp].illus)]);
+      return Promise.all([loadImg('assets/llv-logo-dark.png'), loadImg(f.illus), loadImg(bf.illus), loadImg(F[f.opp].illus), loadImg('assets/toile-strip.webp')]);
     }).then(function(imgs){
       var c = document.createElement('canvas'); c.width = 1080; c.height = 1920;
       var x = c.getContext('2d');
       x.fillStyle = '#FAF3E7'; x.fillRect(0, 0, 1080, 1920);
+      /* range accent (collectible variation) */
+      var tint = '#C9A462';
+      if (f.range.indexOf('Mini') === 0) tint = '#E0B04E';
+      else if (f.range.indexOf('Momoyama') === 0) tint = '#DE9AA4';
+      else if (f.range.indexOf('Teochew') === 0) tint = '#D993A3';
+      /* brand kicker */
+      x.textAlign = 'center';
+      try { x.letterSpacing = '9px'; } catch(e){}
+      x.font = '600 23px "Josefin Sans", sans-serif'; x.fillStyle = '#B08A4A';
+      x.fillText('LA LEVAIN \u00B7 MID-AUTUMN 2026', 540, 58);
+      try { x.letterSpacing = '0px'; } catch(e){}
+      x.textAlign = 'left';
+      /* toile-textured character panel */
       x.fillStyle = '#FBF2EE'; x.fillRect(70, 90, 940, 720);
-      x.strokeStyle = '#E3D2B4'; x.lineWidth = 2; x.strokeRect(70, 90, 940, 720);
+      x.save();
+      x.beginPath(); x.rect(70, 90, 940, 720); x.clip();
+      x.globalAlpha = 0.38;
+      var tex = imgs[4], ty = 90;
+      while (ty < 810) { x.drawImage(tex, 70, ty, 940, 140); ty += 140; }
+      x.globalAlpha = 1; x.restore();
+      x.strokeStyle = tint; x.lineWidth = 3; x.strokeRect(70, 90, 940, 720);
+      x.strokeStyle = '#E3D2B4'; x.lineWidth = 1; x.strokeRect(78, 98, 924, 704);
       var art = imgs[1];
-      var sc = Math.min(880 / art.width, 650 / art.height);
+      var sc = Math.min(900 / art.width, 690 / art.height);
       var dw = art.width * sc, dh = art.height * sc;
       x.drawImage(art, 70 + (940 - dw) / 2, 90 + (720 - dh) / 2, dw, dh);
       x.textAlign = 'left';
@@ -1428,6 +1448,19 @@
         var nml = wrapText(x, pair[1].name, boxW - 220);
         var ny = boxY + (boxH - nml.length * 34) / 2 + 26;
         nml.forEach(function(l){ x.fillText(l, bx0 + 196, ny); ny += 34; });
+      });
+      /* moon phases ornament */
+      var mp = [0, 0.5, 1, 0.5, 0], mx0 = 540 - 2 * 64, my0 = 1668;
+      mp.forEach(function(ph, i){
+        var mx = mx0 + i * 64;
+        x.beginPath(); x.arc(mx, my0, 11, 0, Math.PI * 2);
+        x.strokeStyle = '#C9A462'; x.lineWidth = 2; x.stroke();
+        if (ph === 1) { x.fillStyle = '#C9A462'; x.fill(); }
+        else if (ph === 0.5) {
+          x.save(); x.beginPath();
+          x.arc(mx, my0, 11, Math.PI / 2 * (i < 2 ? 1 : -1), Math.PI / 2 * (i < 2 ? 3 : 1));
+          x.fillStyle = '#C9A462'; x.fill(); x.restore();
+        }
       });
       x.strokeStyle = '#E3D2B4'; x.lineWidth = 1;
       x.beginPath(); x.moveTo(70, 1730); x.lineTo(1010, 1730); x.stroke();
