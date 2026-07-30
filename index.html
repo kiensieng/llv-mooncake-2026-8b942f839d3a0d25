@@ -1051,6 +1051,8 @@
 
     <div class="order-row"><a href="https://www.lalevain.com/product-category/all-products/mid-autumn-mooncakes/" target="_blank" rel="noopener">View the Collection</a><span class="sub">Every set, on our online store</span></div>
 
+    <div class="backtoflavours"><a class="brochure-link" href="assets/LLV-MidAutumn-2026-Brochure.pdf" download>&#8595; Download the e-brochure (PDF)</a></div>
+
     <div class="quiz-cta">
       <h3>Need help deciding?</h3>
       <p>Answer five quick questions and we'll match you to your mooncake.</p>
@@ -1106,6 +1108,7 @@
     La Levain · Mid-Autumn 2026
     <div class="foot-links">
       <a href="https://www.lalevain.com" target="_blank" rel="noopener">lalevain.com</a>
+      <a class="brochure-link" href="assets/LLV-MidAutumn-2026-Brochure.pdf" download>E-Brochure</a>
       <a class="ig" href="https://www.instagram.com/lalevainsg/" target="_blank" rel="noopener" aria-label="La Levain on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="2.5" width="19" height="19" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.6" cy="6.4" r="1.1" fill="currentColor" stroke="none"/></svg></a>
     </div>
   </footer>
@@ -1424,6 +1427,7 @@
     if (e.target.closest && e.target.closest('#shareBtn')) track('page_share');
     if (e.target.closest && e.target.closest('.pill.say')) track('pronounce_click');
     if (e.target.closest && e.target.closest('#intro')) track('intro_dive');
+    if (e.target.closest && e.target.closest('.brochure-link')) track('brochure_download');
   });
   var qb = document.getElementById('quizBox');
   if (qb && 'MutationObserver' in window) {
