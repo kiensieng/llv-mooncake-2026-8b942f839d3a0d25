@@ -1357,64 +1357,81 @@
   }
   function buildCard(key){
     var f = F[key];
+    var bf = F[f.bestie];
     return document.fonts.ready.then(function(){
-      return Promise.all([loadImg('assets/llv-logo-dark.png'), loadImg(f.illus)]);
+      return Promise.all([loadImg('assets/llv-logo-dark.png'), loadImg(f.illus), loadImg(bf.illus)]);
     }).then(function(imgs){
-      var c = document.createElement('canvas'); c.width = 1080; c.height = 1350;
+      var c = document.createElement('canvas'); c.width = 1080; c.height = 1920;
       var x = c.getContext('2d');
-      /* cream editorial card */
-      x.fillStyle = '#FAF3E7'; x.fillRect(0, 0, 1080, 1350);
-      /* framed illustration panel */
-      x.fillStyle = '#FBF3F3';
-      x.fillRect(70, 44, 940, 746);
-      x.strokeStyle = '#E3D2B4'; x.lineWidth = 2;
-      x.strokeRect(70, 44, 940, 746);
+      x.fillStyle = '#FAF3E7'; x.fillRect(0, 0, 1080, 1920);
+      x.fillStyle = '#FBF2EE'; x.fillRect(70, 90, 940, 720);
+      x.strokeStyle = '#E3D2B4'; x.lineWidth = 2; x.strokeRect(70, 90, 940, 720);
       var art = imgs[1];
-      var sc = Math.min(880 / art.width, 680 / art.height);
+      var sc = Math.min(880 / art.width, 650 / art.height);
       var dw = art.width * sc, dh = art.height * sc;
-      x.drawImage(art, 70 + (940 - dw) / 2, 44 + (746 - dh) / 2, dw, dh);
-      /* orange chip overlapping the photo edge */
+      x.drawImage(art, 70 + (940 - dw) / 2, 90 + (720 - dh) / 2, dw, dh);
       x.textAlign = 'left';
       try { x.letterSpacing = '6px'; } catch(e){}
       x.font = '600 24px "Josefin Sans", sans-serif';
       var chipText = 'MY MOONCAKE MATCH';
       var tw = x.measureText(chipText).width;
-      x.fillStyle = '#F26822';
-      x.fillRect(70, 756, tw + 56, 66);
-      x.fillStyle = '#FFFFFF';
-      x.fillText(chipText, 98, 799);
+      x.fillStyle = '#F26822'; x.fillRect(70, 776, tw + 56, 66);
+      x.fillStyle = '#FFFFFF'; x.fillText(chipText, 98, 819);
       try { x.letterSpacing = '2px'; } catch(e){}
-      /* flavour name, left aligned, espresso */
       x.font = '700 54px "Josefin Sans", sans-serif';
       x.fillStyle = '#382416';
       var lines = wrapText(x, f.name.toUpperCase(), 940);
-      var y = 920;
+      var y = 940;
       lines.forEach(function(l){ x.fillText(l, 70, y); y += 66; });
       try { x.letterSpacing = '0px'; } catch(e){}
-      /* range in gold serif */
-      x.font = '30px "Bree Serif", serif';
-      x.fillStyle = '#B08A4A';
-      x.fillText(f.range, 70, y + 8);
-      /* cute taste-profile line */
-      x.font = 'italic 300 27px Poppins, sans-serif';
-      x.fillStyle = '#6F5B44';
+      x.font = '30px "Bree Serif", serif'; x.fillStyle = '#B08A4A';
+      x.fillText(f.range, 70, y + 6);
+      y += 56;
+      x.font = 'italic 300 28px Poppins, sans-serif'; x.fillStyle = '#6F5B44';
       var cuteLines = wrapText(x, '“' + f.cute + '”', 940).slice(0, 2);
-      var cy2 = y + 56;
-      cuteLines.forEach(function(l){ x.fillText(l, 70, cy2); cy2 += 36; });
-      /* footer: divider, dark logo left, URL right */
-      x.strokeStyle = '#E3D2B4'; x.lineWidth = 1;
-      x.beginPath(); x.moveTo(70, 1170); x.lineTo(1010, 1170); x.stroke();
-      var logo = imgs[0], lh = 56, lw = lh * logo.width / logo.height;
-      x.drawImage(logo, 70, 1204, lw, lh);
-      x.textAlign = 'right';
-      x.font = '300 25px Poppins, sans-serif';
-      x.fillStyle = '#8A7660';
-      x.fillText('Find your flavour at', 1010, 1224);
-      x.font = '500 25px Poppins, sans-serif';
+      cuteLines.forEach(function(l){ x.fillText(l, 70, y); y += 40; });
+      y += 26;
+      x.font = '500 26px Poppins, sans-serif';
+      var cx2 = 70;
+      f.traits.forEach(function(t){
+        var w2 = x.measureText(t).width + 44;
+        if (cx2 + w2 > 1010) { cx2 = 70; y += 70; }
+        x.fillStyle = '#FFFFFF'; x.fillRect(cx2, y - 38, w2, 56);
+        x.strokeStyle = '#E3D2B4'; x.lineWidth = 2; x.strokeRect(cx2, y - 38, w2, 56);
+        x.fillStyle = '#4A392B'; x.fillText(t, cx2 + 22, y);
+        cx2 += w2 + 16;
+      });
+      y += 84;
+      try { x.letterSpacing = '5px'; } catch(e){}
+      x.font = '600 22px "Josefin Sans", sans-serif'; x.fillStyle = '#B08A4A';
+      x.fillText('MOONCAKE BESTIE', 70, y);
+      try { x.letterSpacing = '0px'; } catch(e){}
+      y += 18;
+      var bh = 150;
+      x.font = '500 30px Poppins, sans-serif';
+      var bNameLines = wrapText(x, bf.name, 560);
+      var bw = 30 + 170 + 24 + Math.min(560, Math.max.apply(null, bNameLines.map(function(l){ return x.measureText(l).width; }))) + 34;
+      x.fillStyle = '#FFFFFF'; x.fillRect(70, y, bw, bh);
+      x.strokeStyle = '#B08A4A'; x.setLineDash([9, 7]); x.lineWidth = 2;
+      x.strokeRect(70, y, bw, bh); x.setLineDash([]);
+      var ba = imgs[2];
+      var bsc = Math.min(170 / ba.width, 120 / ba.height);
+      x.fillStyle = '#FBF2EE'; x.fillRect(100, y + 15, 170, 120);
+      x.drawImage(ba, 100 + (170 - ba.width * bsc) / 2, y + 15 + (120 - ba.height * bsc) / 2, ba.width * bsc, ba.height * bsc);
       x.fillStyle = '#382416';
-      x.fillText('midautumn2026.lalevain.com', 1010, 1258);
-      /* orange baseline */
-      x.fillStyle = '#F26822'; x.fillRect(0, 1334, 1080, 16);
+      var by2 = y + (bh - bNameLines.length * 38) / 2 + 28;
+      bNameLines.forEach(function(l){ x.fillText(l, 294, by2); by2 += 38; });
+      x.strokeStyle = '#E3D2B4'; x.lineWidth = 1;
+      x.beginPath(); x.moveTo(70, 1730); x.lineTo(1010, 1730); x.stroke();
+      var logo = imgs[0], lh = 58, lw = lh * logo.width / logo.height;
+      x.drawImage(logo, 70, 1768, lw, lh);
+      x.textAlign = 'right';
+      x.font = '300 26px Poppins, sans-serif'; x.fillStyle = '#8A7660';
+      x.fillText('Find your flavour at', 1010, 1790);
+      x.font = '500 27px Poppins, sans-serif'; x.fillStyle = '#382416';
+      x.fillText('midautumn2026.lalevain.com', 1010, 1826);
+      x.textAlign = 'left';
+      x.fillStyle = '#F26822'; x.fillRect(0, 1902, 1080, 18);
       return new Promise(function(res){ c.toBlob(res, 'image/png'); });
     });
   }
