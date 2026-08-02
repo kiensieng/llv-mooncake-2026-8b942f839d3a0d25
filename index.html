@@ -341,7 +341,8 @@
   body.intro-active header.hero .kicker,
   body.intro-active header.hero h1 .w,
   body.intro-active header.hero .tagline,
-  body.intro-active header.hero p:not(.tagline){animation-play-state:paused;}
+  body.intro-active header.hero p:not(.tagline),
+  body.intro-active .hero-quiz{animation-play-state:paused;}
 
   /* ---------- HERO ENTRANCE ---------- */
   header.hero .kicker{opacity:0; animation:herofade .8s ease .1s forwards;}
@@ -350,10 +351,16 @@
     animation-delay:calc(.5s + var(--i) * .13s);}
   header.hero .tagline{opacity:0; animation:herofade .8s ease 1.35s forwards;}
   header.hero p:not(.tagline){opacity:0; animation:herofade .8s ease 1.55s forwards;}
+  .hero-quiz{display:inline-block; margin-top:28px; background:var(--orange); color:#fff;
+    text-decoration:none; font-family:var(--font-display); font-weight:600; font-size:12.5px;
+    letter-spacing:.2em; text-transform:uppercase; padding:16px 36px;
+    box-shadow:0 10px 30px rgba(0,0,0,.35); transition:background .15s;
+    opacity:0; animation:herofade .8s ease 1.8s forwards;}
+  .hero-quiz:hover{background:var(--orange-deep);}
   @keyframes heroword{to{opacity:1; transform:none;}}
   @keyframes herofade{to{opacity:1;}}
   @media (prefers-reduced-motion: reduce){
-    header.hero .kicker, header.hero h1 .w, header.hero .tagline, header.hero p:not(.tagline){
+    header.hero .kicker, header.hero h1 .w, header.hero .tagline, header.hero p:not(.tagline), .hero-quiz{
       animation:none; opacity:1; transform:none;}
   }
 
@@ -572,6 +579,7 @@
   <h1><span class="w" style="--i:0">Discover</span> <span class="w" style="--i:1">a</span> <span class="w" style="--i:2">World</span> <span class="w" style="--i:3">of</span> <span class="w" style="--i:4">Flavours</span></h1>
   <p class="tagline">Global inspirations. Unforgettable flavours. Made in Singapore.</p>
   <p>The thinking, the ingredients and the craft behind every flavour this Mid-Autumn.</p>
+  <a class="hero-quiz" href="#quiz">Take the Flavour Quiz</a>
  </div>
 </header>
 
@@ -1501,7 +1509,7 @@
 <script>
 (function(){
   function track(name, params){ if (typeof gtag === 'function') gtag('event', name, params || {}); }
-  document.querySelectorAll('.order-row a, .quiz-cta a').forEach(function(a){
+  document.querySelectorAll('.order-row a, .quiz-cta a, .hero-quiz').forEach(function(a){
     a.addEventListener('click', function(){ track('order_click', {link_text: a.textContent.trim()}); });
   });
   document.addEventListener('click', function(e){
