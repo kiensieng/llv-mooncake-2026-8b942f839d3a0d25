@@ -183,20 +183,27 @@
     .origins-list{grid-template-columns:repeat(3,1fr);}
     .origins-list li:last-child{grid-column:span 3;}
   }
+  /* Two up on phones so the list stays short. Names sit above the country and the
+     type tightens, because "Belgian chocolate" will not fit a half-width row otherwise. */
   @media (max-width:640px){
-    .origins-list{grid-template-columns:repeat(2,1fr);}
+    /* minmax(0,…) so a long name can never push the grid wider than the screen */
+    .origins-list{grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px;}
     .origins-list li:last-child{grid-column:span 2;}
+    .origin-btn{min-height:48px; padding:8px 9px; justify-content:flex-start;}
+    .origin-btn .oi{font-size:11.5px; gap:6px;}
+    .origin-btn .oi::before{width:5px; height:5px; margin-top:.35em; align-self:flex-start;}
+    .origin-btn .op{font-size:9.5px; letter-spacing:.1em; padding-left:11px;}
     /* The whole map shrinks to a third on a phone, so grow the dots in map units */
     .worldmap .origin{stroke:rgba(217,194,138,.9); stroke-width:5;}
     .worldmap .origin.sel, .worldmap .origin.hot{stroke:var(--orange);}
     .worldmap .arc{stroke-width:3.4;}
     .worldmap .sg-label{font-size:20px; letter-spacing:.2em;}
   }
-  @media (max-width:400px){
-    .origins-list{grid-template-columns:1fr;}
-    .origins-list li:last-child{grid-column:span 1;}
-    .origin-btn{flex-direction:row; align-items:baseline; gap:8px; min-height:46px;}
-    .origin-btn .op{padding-left:0; margin-left:auto;}
+  /* Narrow phones: shave the type so the longest name still holds one line */
+  @media (max-width:380px){
+    .origin-btn{padding:8px;}
+    .origin-btn .oi{font-size:11px; gap:5px;}
+    .origin-btn .op{font-size:9px; padding-left:9px;}
   }
   @media (prefers-reduced-motion: reduce){
     .worldmap .arc{animation:none; stroke-dashoffset:0; opacity:.55;}
@@ -582,6 +589,7 @@
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KES3G6BF8N"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KES3G6BF8N');</script>
+
 
 
 
