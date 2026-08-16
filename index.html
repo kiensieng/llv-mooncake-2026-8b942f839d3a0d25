@@ -421,7 +421,8 @@
   body.intro-active header.hero h1 .w,
   body.intro-active header.hero .tagline,
   body.intro-active header.hero p:not(.tagline),
-  body.intro-active .hero-quiz{animation-play-state:paused;}
+  body.intro-active .hero-quiz,
+  body.intro-active .hero-quiz::before{animation-play-state:paused;}
 
   /* ---------- HERO ENTRANCE ---------- */
   header.hero .kicker{opacity:0; animation:herofade .8s ease .1s forwards;}
@@ -430,17 +431,44 @@
     animation-delay:calc(.5s + var(--i) * .13s);}
   header.hero .tagline{opacity:0; animation:herofade .8s ease 1.35s forwards;}
   header.hero p:not(.tagline){opacity:0; animation:herofade .8s ease 1.55s forwards;}
-  .hero-quiz{display:inline-block; margin-top:28px; background:var(--orange); color:#fff;
+  .hero-quiz{display:inline-block; position:relative; overflow:hidden; margin-top:28px;
+    background:var(--orange); color:#fff;
     text-decoration:none; font-family:var(--font-display); font-weight:600; font-size:12.5px;
     letter-spacing:.2em; text-transform:uppercase; padding:16px 36px;
     box-shadow:0 10px 30px rgba(0,0,0,.35); transition:background .15s;
-    opacity:0; animation:herofade .8s ease 1.8s forwards;}
-  .hero-quiz:hover{background:var(--orange-deep);}
+    /* fade in with the rest of the hero, then breathe and float for good */
+    opacity:0; animation:herofade .8s ease 1.8s forwards,
+                         heroglow 3.6s ease-in-out 2.6s infinite,
+                         herofloat 3.6s ease-in-out 2.6s infinite;}
+  /* a light sweeps across every few seconds so the eye catches it on a still page */
+  .hero-quiz::before{content:''; position:absolute; top:0; bottom:0; left:0; width:42%;
+    background:linear-gradient(100deg, rgba(255,255,255,0), rgba(255,255,255,.34), rgba(255,255,255,0));
+    transform:translateX(-260%) skewX(-18deg); pointer-events:none;
+    animation:herosheen 5.6s ease-in-out 3.4s infinite;}
+  .hero-quiz:hover{background:var(--orange-deep);
+    /* hold still under the cursor, keep glowing */
+    animation-play-state:running, running, paused;}
   @keyframes heroword{to{opacity:1; transform:none;}}
   @keyframes herofade{to{opacity:1;}}
+  @keyframes herofloat{0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);}}
+  /* the hero photo is full of warm city lights, so the pulse has to swing wide
+     to read as a glow rather than blending into the background */
+  @keyframes heroglow{
+    0%,100%{box-shadow:0 10px 30px rgba(0,0,0,.35), 0 0 16px 0 rgba(242,104,34,.18);}
+    50%{box-shadow:0 14px 34px rgba(0,0,0,.42), 0 0 48px 13px rgba(242,104,34,.78);}
+  }
+  @keyframes herosheen{
+    0%{transform:translateX(-260%) skewX(-18deg); opacity:0;}
+    9%{opacity:1;}
+    34%{transform:translateX(330%) skewX(-18deg); opacity:0;}
+    100%{transform:translateX(330%) skewX(-18deg); opacity:0;}
+  }
   @media (prefers-reduced-motion: reduce){
     header.hero .kicker, header.hero h1 .w, header.hero .tagline, header.hero p:not(.tagline), .hero-quiz{
       animation:none; opacity:1; transform:none;}
+    /* no motion, but keep the button standing off the dark hero */
+    .hero-quiz{box-shadow:0 10px 30px rgba(0,0,0,.35), 0 0 26px 4px rgba(242,104,34,.42);}
+    .hero-quiz::before{display:none;}
   }
 
   /* ---------- BRAND STORY PHOTO ---------- */
@@ -589,6 +617,7 @@
 </style>
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-KES3G6BF8N"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-KES3G6BF8N');</script>
+
 
 
 
